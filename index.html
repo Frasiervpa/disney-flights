@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✈️ SLC → MCO Flight Tracker — Disney World Aug 2026</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <div class="header-top">
+        <h1>✈️ SLC <span class="arrow">→</span> MCO</h1>
+        <p class="subtitle">Disney World · August 2026 · Round-Trip Price Tracker</p>
+      </div>
+      <div class="header-meta">
+        <span id="lastUpdated" class="last-updated">Loading...</span>
+        <span class="disclaimer">Prices from Google Flights · Updated daily · 1 adult economy</span>
+      </div>
+    </header>
+
+    <div class="summary-strip" id="summaryStrip"></div>
+
+    <div class="controls">
+      <div class="filter-group">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-btn active" data-type="all">All</button>
+        <button class="filter-btn" data-type="Weekend">Weekend</button>
+        <button class="filter-btn" data-type="1 Week">1 Week</button>
+        <button class="filter-btn" data-type="Extended">Extended</button>
+        <button class="filter-btn" data-type="Wed–Wed">Wed–Wed</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="flightTable">
+        <thead>
+          <tr>
+            <th>Dates</th>
+            <th>Nights</th>
+            <th>Type</th>
+            <th class="price-col">Current Price <span class="per-person">(per person)</span></th>
+            <th class="price-col">7-Day Low</th>
+            <th class="price-col">All-Time Low</th>
+            <th>Trend</th>
+            <th>History</th>
+          </tr>
+        </thead>
+        <tbody id="flightBody">
+          <tr><td colspan="8" class="loading">Loading price data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="type-legend">
+      <span class="legend-item"><span class="type-badge type-weekend">Weekend</span> 3 nights</span>
+      <span class="legend-item"><span class="type-badge type-1-week">1 Week</span> 7 nights</span>
+      <span class="legend-item"><span class="type-badge type-extended">Extended</span> 10+ nights</span>
+      <span class="legend-item"><span class="type-badge type-wed-wed">Wed–Wed</span> Typically cheapest days to fly</span>
+    </div>
+
+    <footer class="site-footer">
+      <p>Prices are estimates pulled from Google Flights for 1 adult, economy class, round-trip SLC–MCO.</p>
+      <p>Check directly with airlines before booking. This tracker is for trend monitoring only.</p>
+    </footer>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
