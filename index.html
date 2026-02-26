@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>✈️ SLC → MCO Flight Tracker — Disney World Aug 2026</title>
+  <title>✈️ Utah → MCO Flight Tracker — Disney World Aug 2026</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,7 +11,7 @@
 
     <header class="site-header">
       <div class="header-top">
-        <h1>✈️ SLC <span class="arrow">→</span> MCO</h1>
+        <h1>✈️ Utah <span class="arrow">→</span> Orlando</h1>
         <p class="subtitle">Disney World · August 2026 · Round-Trip Price Tracker</p>
       </div>
       <div class="header-meta">
@@ -24,12 +24,18 @@
 
     <div class="controls">
       <div class="filter-group">
-        <span class="filter-label">Filter:</span>
+        <span class="filter-label">Airport:</span>
+        <button class="origin-btn active" data-origin="all">All</button>
+        <button class="origin-btn" data-origin="SLC">SLC (Salt Lake)</button>
+        <button class="origin-btn" data-origin="PVU">PVU (Provo)</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Duration:</span>
         <button class="filter-btn active" data-type="all">All</button>
         <button class="filter-btn" data-type="Weekend">Weekend</button>
         <button class="filter-btn" data-type="1 Week">1 Week</button>
         <button class="filter-btn" data-type="Extended">Extended</button>
-        <button class="filter-btn" data-type="Wed–Wed">Wed–Wed</button>
+        <button class="filter-btn" data-type="Wed-Wed">Wed–Wed</button>
       </div>
     </div>
 
@@ -37,6 +43,7 @@
       <table id="flightTable">
         <thead>
           <tr>
+            <th>From</th>
             <th>Dates</th>
             <th>Nights</th>
             <th>Type</th>
@@ -48,7 +55,7 @@
           </tr>
         </thead>
         <tbody id="flightBody">
-          <tr><td colspan="8" class="loading">Loading price data...</td></tr>
+          <tr><td colspan="9" class="loading">Loading price data...</td></tr>
         </tbody>
       </table>
     </div>
@@ -61,7 +68,7 @@
     </div>
 
     <footer class="site-footer">
-      <p>Prices are estimates pulled from Google Flights for 1 adult, economy class, round-trip SLC–MCO.</p>
+      <p>Prices are estimates pulled from Google Flights for 1 adult, economy class, round-trip to Orlando (MCO area).</p>
       <p>Check directly with airlines before booking. This tracker is for trend monitoring only.</p>
     </footer>
 

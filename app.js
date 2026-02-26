@@ -3,8 +3,9 @@
 const DATA_URL = 'data/flights.json';
 let allRoutes = [];
 let activeFilter = 'all';
+let activeOrigin = 'all';
 
-// Price tier thresholds (rough estimates for SLC→MCO round trip)
+// Price tier thresholds (round trip per person)
 const PRICE_LOW  = 300;
 const PRICE_HIGH = 550;
 
@@ -76,6 +77,12 @@ function renderTrend(route) {
   return `<span class="trend-flat" title="No change">→</span>`;
 }
 
+function isRowHidden(route) {
+  const originMatch = activeOrigin === 'all' || route.origin === activeOrigin;
+  const typeMatch   = activeFilter === 'all' || route.type === activeFilter;
+  return !(originMatch && typeMatch);
+}
+
 function renderRow(route) {
   const latest = latestPrice(route);
   const l7 = low7(route);
@@ -94,9 +101,11 @@ function renderRow(route) {
     ? `<div class="price-cell"><div class="price-val ${priceClass(atl)}">${fmt(atl)}</div></div>`
     : `<div class="price-none">—</div>`;
 
-  const isHidden = activeFilter !== 'all' && route.type !== activeFilter;
+  const hidden = isRowHidden(route);
+  const originBadge = `<span class="origin-badge origin-${route.origin.toLowerCase()}">${route.origin}</span>`;
 
-  return `<tr data-type="${route.type}" class="${isHidden ? 'hidden' : ''}">
+  return `<tr data-type="${route.type}" data-origin="${route.origin}" class="${hidden ? 'hidden' : ''}">
+    <td>${originBadge}</td>
     <td><div class="date-label">${route.label}</div></td>
     <td>${route.nights}</td>
     <td><span class="type-badge ${typeClass(route.type)}">${route.type}</span></td>
@@ -108,9 +117,14 @@ function renderRow(route) {
   </tr>`;
 }
 
+function visibleRoutes() {
+  return allRoutes.filter(r => !isRowHidden(r));
+}
+
 function renderSummary(routes) {
-  const allLatest = routes.map(r => latestPrice(r)).filter(Boolean);
-  const allAtl    = routes.map(r => ({ route: r, price: allTimeLow(r) })).filter(x => x.price);
+  const visible = routes.filter(r => !isRowHidden(r));
+  const allLatest = visible.map(r => ({ route: r, ...latestPrice(r) })).filter(x => x.price);
+  const allAtl    = visible.map(r => ({ route: r, price: allTimeLow(r) })).filter(x => x.price);
 
   if (!allLatest.length) {
     document.getElementById('summaryStrip').innerHTML =
@@ -118,31 +132,31 @@ function renderSummary(routes) {
     return;
   }
 
-  const cheapestNow = allLatest.reduce((a, b) => a.price < b.price ? a : b);
-  const cheapestRoute = routes.find(r => latestPrice(r) === cheapestNow);
+  const cheapestNow  = allLatest.reduce((a, b) => a.price < b.price ? a : b);
   const cheapestEver = allAtl.length ? allAtl.reduce((a, b) => a.price < b.price ? a : b) : null;
-  const dropping = routes.filter(r => trend(r) === 'down').length;
+  const dropping     = visible.filter(r => trend(r) === 'down').length;
+  const originLabel  = activeOrigin === 'all' ? 'SLC + PVU' : activeOrigin;
 
   document.getElementById('summaryStrip').innerHTML = `
     <div class="summary-card sc-green">
       <div class="sc-label">Cheapest Right Now</div>
       <div class="sc-value">${fmt(cheapestNow.price)}</div>
-      <div class="sc-sub">${cheapestRoute ? cheapestRoute.label : ''} · ${cheapestNow.airline || ''}</div>
+      <div class="sc-sub">${cheapestNow.route.origin} · ${cheapestNow.route.label}</div>
     </div>
     <div class="summary-card">
       <div class="sc-label">All-Time Low</div>
       <div class="sc-value">${cheapestEver ? fmt(cheapestEver.price) : '—'}</div>
-      <div class="sc-sub">${cheapestEver ? cheapestEver.route.label : ''}</div>
+      <div class="sc-sub">${cheapestEver ? cheapestEver.route.origin + ' · ' + cheapestEver.route.label : ''}</div>
     </div>
     <div class="summary-card">
       <div class="sc-label">Routes Dropping</div>
       <div class="sc-value">${dropping}</div>
-      <div class="sc-sub">of ${routes.length} tracked</div>
+      <div class="sc-sub">of ${visible.length} shown</div>
     </div>
     <div class="summary-card">
-      <div class="sc-label">Routes Tracked</div>
-      <div class="sc-value">${routes.length}</div>
-      <div class="sc-sub">SLC → MCO round-trip</div>
+      <div class="sc-label">Tracking</div>
+      <div class="sc-value">${originLabel}</div>
+      <div class="sc-sub">→ Orlando (MCO area)</div>
     </div>`;
 }
 
@@ -152,15 +166,15 @@ function render(routes) {
   renderSummary(routes);
 }
 
-function applyFilter(type) {
-  activeFilter = type;
-  document.querySelectorAll('.filter-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.type === type);
-  });
+function applyFilters() {
   document.querySelectorAll('#flightBody tr').forEach(row => {
-    const rt = row.dataset.type;
-    row.classList.toggle('hidden', type !== 'all' && rt !== type);
+    const type   = row.dataset.type;
+    const origin = row.dataset.origin;
+    const hide   = (activeOrigin !== 'all' && origin !== activeOrigin) ||
+                   (activeFilter !== 'all' && type   !== activeFilter);
+    row.classList.toggle('hidden', hide);
   });
+  renderSummary(allRoutes);
 }
 
 async function load() {
@@ -170,19 +184,32 @@ async function load() {
 
     const lu = data.lastUpdated;
     document.getElementById('lastUpdated').textContent = lu
-      ? 'Last updated: ' + new Date(lu + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })
+      ? 'Last updated: ' + new Date(lu).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })
       : 'Not yet updated';
 
     render(data.routes || []);
   } catch (e) {
     document.getElementById('flightBody').innerHTML =
-      `<tr><td colspan="8" class="loading">Could not load price data. Try refreshing.</td></tr>`;
+      `<tr><td colspan="9" class="loading">Could not load price data. Try refreshing.</td></tr>`;
   }
 }
 
-// Filter buttons
+// Origin buttons
+document.querySelectorAll('.origin-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeOrigin = btn.dataset.origin;
+    document.querySelectorAll('.origin-btn').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
+});
+
+// Duration filter buttons
 document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => applyFilter(btn.dataset.type));
+  btn.addEventListener('click', () => {
+    activeFilter = btn.dataset.type;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
 });
 
 load();

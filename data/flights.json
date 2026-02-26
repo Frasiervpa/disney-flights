@@ -15,7 +15,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug1-aug4",
@@ -29,7 +30,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug1-aug8",
@@ -43,7 +45,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug1-aug11",
@@ -57,7 +60,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug5-aug12",
@@ -71,7 +75,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug8-aug11",
@@ -85,7 +90,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug8-aug15",
@@ -99,7 +105,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug8-aug18",
@@ -113,7 +120,8 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
     },
     {
       "id": "aug12-aug19",
@@ -127,7 +135,98 @@
           "date": "2026-02-26",
           "price": 190
         }
-      ]
+      ],
+      "origin": "SLC"
+    },
+    {
+      "id": "pvu-jul29-aug5",
+      "origin": "PVU",
+      "label": "Jul 29 \u2192 Aug 5",
+      "depart": "2026-07-29",
+      "return": "2026-08-05",
+      "nights": 7,
+      "type": "Wed-Wed",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug1-aug4",
+      "origin": "PVU",
+      "label": "Aug 1 \u2192 Aug 4",
+      "depart": "2026-08-01",
+      "return": "2026-08-04",
+      "nights": 3,
+      "type": "Weekend",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug1-aug8",
+      "origin": "PVU",
+      "label": "Aug 1 \u2192 Aug 8",
+      "depart": "2026-08-01",
+      "return": "2026-08-08",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug1-aug11",
+      "origin": "PVU",
+      "label": "Aug 1 \u2192 Aug 11",
+      "depart": "2026-08-01",
+      "return": "2026-08-11",
+      "nights": 10,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug5-aug12",
+      "origin": "PVU",
+      "label": "Aug 5 \u2192 Aug 12",
+      "depart": "2026-08-05",
+      "return": "2026-08-12",
+      "nights": 7,
+      "type": "Wed-Wed",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug8-aug11",
+      "origin": "PVU",
+      "label": "Aug 8 \u2192 Aug 11",
+      "depart": "2026-08-08",
+      "return": "2026-08-11",
+      "nights": 3,
+      "type": "Weekend",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug8-aug15",
+      "origin": "PVU",
+      "label": "Aug 8 \u2192 Aug 15",
+      "depart": "2026-08-08",
+      "return": "2026-08-15",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug8-aug18",
+      "origin": "PVU",
+      "label": "Aug 8 \u2192 Aug 18",
+      "depart": "2026-08-08",
+      "return": "2026-08-18",
+      "nights": 10,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug12-aug19",
+      "origin": "PVU",
+      "label": "Aug 12 \u2192 Aug 19",
+      "depart": "2026-08-12",
+      "return": "2026-08-19",
+      "nights": 7,
+      "type": "Wed-Wed",
+      "snapshots": []
     }
   ]
 }
