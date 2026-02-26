@@ -111,12 +111,10 @@ function renderRow(r) {
   const atl    = allTimeLow(r);
   const bookUrl = buildFlightsUrl(r.depart, r.return, r.origin);
 
-  const priceCell = latest
-    ? `<div class="price-cell">
-         <div class="price-val ${priceClass(latest.price)}">${fmt(latest.price)}</div>
-         <a class="book-btn" href="${bookUrl}" target="_blank" rel="noopener">Book →</a>
-       </div>`
-    : `<div class="price-none">—</div>`;
+  const priceCell = `<div class="price-cell">
+    ${latest ? `<div class="price-val ${priceClass(latest.price)}">${fmt(latest.price)}</div>` : `<div class="price-none">—</div>`}
+    <a class="book-btn" href="${bookUrl}" target="_blank" rel="noopener">Book →</a>
+  </div>`;
 
   const l7Cell  = l7  ? `<div class="price-val ${priceClass(l7)}">${fmt(l7)}</div>`   : `<div class="price-none">—</div>`;
   const atlCell = atl ? `<div class="price-val ${priceClass(atl)}">${fmt(atl)}</div>` : `<div class="price-none">—</div>`;
