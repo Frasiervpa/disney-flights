@@ -179,6 +179,59 @@ function renderSummary() {
     </div>`;
 }
 
+// ── Mobile card rendering ─────────────────────────────────────────────────
+
+function renderCard(r) {
+  const latest = latestPrice(r);
+  const atl    = allTimeLow(r);
+  const t      = trend(r);
+  const bookUrl = buildFlightsUrl(r.depart, r.return, r.origin);
+  const gLabel = r.group || '';
+  const gBadge = gLabel
+    ? `<span class="group-badge" style="background:${groupColor(gLabel)};color:${groupTextColor(gLabel)}">${gLabel}</span>`
+    : '';
+  const trendIcon = !t ? '—' : t === 'down' ? '<span class="trend-down">↓</span>' : t === 'up' ? '<span class="trend-up">↑</span>' : '<span class="trend-flat">→</span>';
+  const priceVal = latest
+    ? `<div class="fc-price-val ${priceClass(latest.price)}">${fmt(latest.price)}</div>`
+    : `<div class="fc-price-val price-none">—</div>`;
+  const atlVal = atl
+    ? `<div class="fc-price-sub ${priceClass(atl)}">${fmt(atl)}</div>`
+    : `<div class="fc-price-sub price-none">—</div>`;
+
+  return `<div class="fc${isHidden(r)?' hidden':''}" data-type="${r.type}" data-origin="${r.origin}" data-group="${r.group||''}">
+    <div class="fc-header">
+      <div class="fc-badges">
+        ${gBadge}
+        <span class="origin-badge origin-${r.origin.toLowerCase()}">${r.origin}</span>
+        <span class="type-badge ${typeClass(r.type)}">${r.type}</span>
+      </div>
+      <div style="text-align:right">
+        <div class="fc-dates">${r.label}</div>
+        <div class="fc-nights">${r.nights} nights</div>
+      </div>
+    </div>
+    <div class="fc-prices">
+      <div class="fc-price-block">
+        <div class="fc-price-label">Current</div>
+        ${priceVal}
+      </div>
+      <div class="fc-price-block">
+        <div class="fc-price-label">All-time low</div>
+        ${atlVal}
+      </div>
+    </div>
+    <div class="fc-footer">
+      <div class="fc-trend">${trendIcon}</div>
+      <a class="fc-book-btn" href="${bookUrl}" target="_blank" rel="noopener">Book on Google Flights →</a>
+    </div>
+  </div>`;
+}
+
+function renderCards() {
+  const el = document.getElementById('flightCards');
+  if (el) el.innerHTML = allRoutes.map(renderCard).join('');
+}
+
 // ── Filters ───────────────────────────────────────────────────────────────
 
 function applyFilters() {
@@ -187,6 +240,12 @@ function applyFilters() {
                  (activeOrigin !== 'all' && row.dataset.origin !== activeOrigin) ||
                  (activeFilter !== 'all' && row.dataset.type   !== activeFilter);
     row.classList.toggle('hidden', hide);
+  });
+  document.querySelectorAll('#flightCards .fc[data-type]').forEach(card => {
+    const hide = (activeGroup  !== 'all' && card.dataset.group  !== activeGroup)  ||
+                 (activeOrigin !== 'all' && card.dataset.origin !== activeOrigin) ||
+                 (activeFilter !== 'all' && card.dataset.type   !== activeFilter);
+    card.classList.toggle('hidden', hide);
   });
   renderSummary();
 }
@@ -225,6 +284,7 @@ async function load() {
     allRoutes = data.routes || [];
     buildGroupButtons(allRoutes);
     document.getElementById('flightBody').innerHTML = allRoutes.map(renderRow).join('');
+    renderCards();
     renderSummary();
   } catch(e) {
     document.getElementById('flightBody').innerHTML =

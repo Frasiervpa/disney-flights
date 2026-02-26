@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
 }
 
-.page { max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }
+.page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
 
 /* Header */
 .site-header { background: #1a2a4a; color: #fff; border-radius: 12px; padding: 24px 28px 20px; margin-bottom: 20px; }
@@ -60,6 +60,7 @@ body {
 .table-wrap { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 16px; overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 thead th { background: #1a2a4a; color: #a0c0e0; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; padding: 12px 14px; text-align: left; white-space: nowrap; }
+th.col-history { min-width: 110px; }
 .price-col { text-align: right; }
 .per-person { font-size: 10px; font-weight: 400; opacity: 0.7; display: block; }
 tbody tr { border-bottom: 1px solid #eef2f6; transition: background 0.1s; }
@@ -123,11 +124,39 @@ td { padding: 13px 14px; vertical-align: middle; }
 .site-footer { border-top: 1px solid #d8e4ee; padding-top: 16px; color: #8aaabb; font-size: 12px; line-height: 1.8; }
 
 /* Mobile */
-@media (max-width: 600px) {
-  .site-header h1 { font-size: 22px; }
-  .summary-card { min-width: 130px; }
+/* ── Mobile card layout ─────────────────────────────────────────────────── */
+.flight-cards { display: none; }
+
+@media (max-width: 640px) {
+  .page { padding: 16px 12px 40px; }
+  .site-header { padding: 18px 16px 14px; border-radius: 10px; }
+  .site-header h1 { font-size: 20px; }
+  .subtitle { font-size: 13px; }
+  .summary-strip { gap: 8px; }
+  .summary-card { min-width: 140px; padding: 10px 12px; }
   .summary-card .sc-value { font-size: 18px; }
-  thead th { font-size: 11px; padding: 10px 10px; }
-  td { padding: 11px 10px; }
-  .price-val { font-size: 16px; }
+  .filter-label { min-width: 56px; font-size: 12px; }
+  .filter-btn, .origin-btn, .group-btn { font-size: 12px; padding: 4px 11px; }
+
+  /* Hide table, show cards */
+  .table-wrap { display: none; }
+  .flight-cards { display: block; }
 }
+
+/* Flight cards (mobile) */
+.flight-cards { flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.fc { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); padding: 14px 16px; }
+.fc.hidden { display: none; }
+.fc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+.fc-badges { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.fc-dates { font-weight: 700; font-size: 15px; color: #1a2a4a; }
+.fc-nights { font-size: 12px; color: #8aaabb; margin-top: 1px; }
+.fc-prices { display: flex; gap: 16px; align-items: flex-end; margin-bottom: 10px; }
+.fc-price-block { display: flex; flex-direction: column; }
+.fc-price-label { font-size: 10px; color: #8aaabb; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
+.fc-price-val { font-size: 22px; font-weight: 700; }
+.fc-price-sub { font-size: 18px; font-weight: 600; }
+.fc-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eef2f6; padding-top: 10px; margin-top: 4px; }
+.fc-trend { font-size: 20px; }
+.fc-book-btn { display: inline-block; font-size: 13px; font-weight: 700; color: #fff; background: #2a5a9a; border-radius: 8px; padding: 7px 18px; text-decoration: none; transition: background 0.15s; }
+.fc-book-btn:hover { background: #1a3a6a; }
