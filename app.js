@@ -194,6 +194,51 @@ async function load() {
   }
 }
 
+// ── Custom date search ────────────────────────────────────────────────────
+
+const KG = {
+  SLC: { id: '/m/0f2r6', type: 2 },
+  PVU: { id: '/m/0l39b', type: 3 },
+  ORL: { id: '/m/0ply0', type: 3 },
+};
+
+function buildFlightsUrl(departDate, returnDate, originKey) {
+  const o = KG[originKey], d = KG.ORL;
+  function dateField(s) {
+    const b = new TextEncoder().encode(s);
+    return new Uint8Array([0x12, b.length, ...b]);
+  }
+  function placeField(tag, typeVal, placeId) {
+    const pb = new TextEncoder().encode(placeId);
+    const inner = new Uint8Array([0x08, typeVal, 0x12, pb.length, ...pb]);
+    return new Uint8Array([tag, inner.length, ...inner]);
+  }
+  function leg(date, fromId, fromType, toId, toType) {
+    const content = new Uint8Array([
+      ...dateField(date),
+      ...placeField(0x6a, fromType, fromId),
+      ...placeField(0x72, toType, toId),
+    ]);
+    return new Uint8Array([0x1a, content.length, ...content]);
+  }
+  const header  = new Uint8Array([0x08, 0x1c, 0x10, 0x01]);
+  const leg1    = leg(departDate, o.id, o.type, d.id, d.type);
+  const leg2    = leg(returnDate, d.id, d.type, o.id, o.type);
+  const trailer = new Uint8Array([0x40,0x01,0x48,0x01,0x70,0x01,0x82,0x01,0x0b,0x08,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x01,0x98,0x01,0x01]);
+  const raw = new Uint8Array([...header, ...leg1, ...leg2, ...trailer]);
+  const b64 = btoa(String.fromCharCode(...raw)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
+  return `https://www.google.com/travel/flights/search?tfs=${b64}&hl=en&curr=USD`;
+}
+
+document.getElementById('csSearch').addEventListener('click', () => {
+  const dep    = document.getElementById('csDepart').value;
+  const ret    = document.getElementById('csReturn').value;
+  const origin = document.getElementById('csOrigin').value;
+  if (!dep || !ret) { alert('Please select both a departure and return date.'); return; }
+  if (ret <= dep)   { alert('Return date must be after departure date.'); return; }
+  window.open(buildFlightsUrl(dep, ret, origin), '_blank');
+});
+
 // Origin buttons
 document.querySelectorAll('.origin-btn').forEach(btn => {
   btn.addEventListener('click', () => {

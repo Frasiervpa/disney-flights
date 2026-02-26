@@ -60,6 +60,29 @@
       </table>
     </div>
 
+    <div class="custom-search">
+      <div class="cs-title">🔍 Custom Date Search</div>
+      <div class="cs-row">
+        <div class="cs-field">
+          <label>Depart</label>
+          <input type="date" id="csDepart" min="2026-07-01" max="2026-08-31" />
+        </div>
+        <div class="cs-field">
+          <label>Return</label>
+          <input type="date" id="csReturn" min="2026-07-01" max="2026-09-15" />
+        </div>
+        <div class="cs-field">
+          <label>From</label>
+          <select id="csOrigin">
+            <option value="SLC">SLC – Salt Lake City</option>
+            <option value="PVU">PVU – Provo</option>
+          </select>
+        </div>
+        <button class="cs-btn" id="csSearch">Open in Google Flights →</button>
+      </div>
+      <div class="cs-note">Opens a live Google Flights search in a new tab. Prices not stored in the tracker.</div>
+    </div>
+
     <div class="type-legend">
       <span class="legend-item"><span class="type-badge type-weekend">Weekend</span> 3 nights</span>
       <span class="legend-item"><span class="type-badge type-1-week">1 Week</span> 7 nights</span>
