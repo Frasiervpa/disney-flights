@@ -16,27 +16,53 @@ function priceClass(p) {
 function fmt(p) { return p ? '$' + p.toLocaleString() : null; }
 function typeClass(t) { return 'type-' + t.toLowerCase().replace(/[^a-z0-9]/g, '-'); }
 
+// Normalize a snapshot to { price, airline, stops, nonstopPrice, nonstopAirline }
+// Handles both old { date, price } and new { date, nonstop, cheapest } formats.
+function normSnap(s) {
+  if (!s) return null;
+  // New format
+  if (s.cheapest || s.nonstop) {
+    const ch = s.cheapest || {};
+    const ns = s.nonstop   || {};
+    return {
+      date:           s.date,
+      price:          ch.price   || null,
+      airline:        ch.airline || '',
+      stops:          ch.stops   != null ? ch.stops : null,
+      nonstopPrice:   ns.price   || null,
+      nonstopAirline: ns.airline || '',
+    };
+  }
+  // Legacy format
+  if (s.price) return { date: s.date, price: s.price, airline: '', stops: null, nonstopPrice: null, nonstopAirline: '' };
+  return null;
+}
+
 function latestPrice(r) {
-  const s = r.snapshots.filter(x => x.price);
+  const s = r.snapshots.map(normSnap).filter(x => x && x.price);
+  return s.length ? s[s.length - 1] : null;
+}
+function latestNonstop(r) {
+  const s = r.snapshots.map(normSnap).filter(x => x && x.nonstopPrice);
   return s.length ? s[s.length - 1] : null;
 }
 function low7(r) {
   const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 7);
-  const s = r.snapshots.filter(x => x.price && new Date(x.date) >= cutoff);
+  const s = r.snapshots.map(normSnap).filter(x => x && x.price && new Date(x.date) >= cutoff);
   return s.length ? Math.min(...s.map(x => x.price)) : null;
 }
 function allTimeLow(r) {
-  const p = r.snapshots.filter(x => x.price).map(x => x.price);
+  const p = r.snapshots.map(normSnap).filter(x => x && x.price).map(x => x.price);
   return p.length ? Math.min(...p) : null;
 }
 function trend(r) {
-  const s = r.snapshots.filter(x => x.price);
+  const s = r.snapshots.map(normSnap).filter(x => x && x.price);
   if (s.length < 2) return null;
   const d = s[s.length-1].price - s[s.length-2].price;
   return d < 0 ? 'down' : d > 0 ? 'up' : 'flat';
 }
 function renderSparkline(r) {
-  const s = r.snapshots.filter(x => x.price).slice(-14);
+  const s = r.snapshots.map(normSnap).filter(x => x && x.price).slice(-14);
   if (s.length < 2) return `<span class="spark-none">—</span>`;
   const max = Math.max(...s.map(x => x.price));
   const min = Math.min(...s.map(x => x.price));
@@ -52,6 +78,12 @@ function renderTrend(r) {
   if (t==='down') return `<span class="trend-down" title="Price dropped">↓</span>`;
   if (t==='up')   return `<span class="trend-up" title="Price rose">↑</span>`;
   return `<span class="trend-flat" title="No change">→</span>`;
+}
+function stopsLabel(stops) {
+  if (stops === null || stops === undefined) return '';
+  if (stops === 0) return '<span class="stops-badge stops-0">Nonstop</span>';
+  if (stops === 1) return '<span class="stops-badge stops-1">1 stop</span>';
+  return `<span class="stops-badge stops-n">${stops} stops</span>`;
 }
 
 // ── URL builder (mirrors Python scraper logic in JS) ──────────────────────
@@ -106,15 +138,25 @@ function groupTextColor(group) {
 }
 
 function renderRow(r) {
-  const latest = latestPrice(r);
-  const l7     = low7(r);
-  const atl    = allTimeLow(r);
-  const bookUrl = buildFlightsUrl(r.depart, r.return, r.origin);
+  const latest   = latestPrice(r);
+  const nonstop  = latestNonstop(r);
+  const l7       = low7(r);
+  const atl      = allTimeLow(r);
+  const bookUrl  = buildFlightsUrl(r.depart, r.return, r.origin);
 
-  const priceCell = `<div class="price-cell">
-    ${latest ? `<div class="price-val ${priceClass(latest.price)}">${fmt(latest.price)}</div>` : `<div class="price-none">—</div>`}
-    <a class="book-btn" href="${bookUrl}" target="_blank" rel="noopener">Book →</a>
-  </div>`;
+  // Nonstop column
+  const nsCell = nonstop
+    ? `<div class="price-val ${priceClass(nonstop.nonstopPrice)}">${fmt(nonstop.nonstopPrice)}</div>
+       ${nonstop.nonstopAirline ? `<div class="airline-label">${nonstop.nonstopAirline}</div>` : ''}`
+    : `<div class="price-none">—</div>`;
+
+  // Best deal column (cheapest, may have stops)
+  const bdCell = latest
+    ? `<div class="price-val ${priceClass(latest.price)}">${fmt(latest.price)}</div>
+       ${latest.airline ? `<div class="airline-label">${latest.airline}</div>` : ''}
+       ${stopsLabel(latest.stops)}
+       <a class="book-btn" href="${bookUrl}" target="_blank" rel="noopener">Book →</a>`
+    : `<div class="price-none">—</div>`;
 
   const l7Cell  = l7  ? `<div class="price-val ${priceClass(l7)}">${fmt(l7)}</div>`   : `<div class="price-none">—</div>`;
   const atlCell = atl ? `<div class="price-val ${priceClass(atl)}">${fmt(atl)}</div>` : `<div class="price-none">—</div>`;
@@ -130,11 +172,12 @@ function renderRow(r) {
     <td><div class="date-label">${r.label}</div></td>
     <td>${r.nights}</td>
     <td><span class="type-badge ${typeClass(r.type)}">${r.type}</span></td>
-    <td class="price-col">${priceCell}</td>
+    <td class="price-col">${nsCell}</td>
+    <td class="price-col">${bdCell}</td>
     <td class="price-col">${l7Cell}</td>
     <td class="price-col">${atlCell}</td>
     <td>${renderTrend(r)}</td>
-    <td>${renderSparkline(r)}</td>
+    <td class="col-history">${renderSparkline(r)}</td>
   </tr>`;
 }
 
@@ -182,18 +225,40 @@ function renderSummary() {
 // ── Mobile card rendering ─────────────────────────────────────────────────
 
 function renderCard(r) {
-  const latest = latestPrice(r);
-  const atl    = allTimeLow(r);
-  const t      = trend(r);
+  const latest  = latestPrice(r);
+  const nonstop = latestNonstop(r);
+  const atl     = allTimeLow(r);
+  const t       = trend(r);
   const bookUrl = buildFlightsUrl(r.depart, r.return, r.origin);
-  const gLabel = r.group || '';
-  const gBadge = gLabel
+  const gLabel  = r.group || '';
+  const gBadge  = gLabel
     ? `<span class="group-badge" style="background:${groupColor(gLabel)};color:${groupTextColor(gLabel)}">${gLabel}</span>`
     : '';
   const trendIcon = !t ? '—' : t === 'down' ? '<span class="trend-down">↓</span>' : t === 'up' ? '<span class="trend-up">↑</span>' : '<span class="trend-flat">→</span>';
-  const priceVal = latest
-    ? `<div class="fc-price-val ${priceClass(latest.price)}">${fmt(latest.price)}</div>`
-    : `<div class="fc-price-val price-none">—</div>`;
+
+  const nsBlock = nonstop
+    ? `<div class="fc-price-block">
+        <div class="fc-price-label">Nonstop</div>
+        <div class="fc-price-val ${priceClass(nonstop.nonstopPrice)}">${fmt(nonstop.nonstopPrice)}</div>
+        ${nonstop.nonstopAirline ? `<div class="fc-airline">${nonstop.nonstopAirline}</div>` : ''}
+       </div>`
+    : `<div class="fc-price-block">
+        <div class="fc-price-label">Nonstop</div>
+        <div class="fc-price-val price-none">—</div>
+       </div>`;
+
+  const bdBlock = latest
+    ? `<div class="fc-price-block">
+        <div class="fc-price-label">Best deal</div>
+        <div class="fc-price-val ${priceClass(latest.price)}">${fmt(latest.price)}</div>
+        ${latest.airline ? `<div class="fc-airline">${latest.airline}</div>` : ''}
+        ${stopsLabel(latest.stops)}
+       </div>`
+    : `<div class="fc-price-block">
+        <div class="fc-price-label">Best deal</div>
+        <div class="fc-price-val price-none">—</div>
+       </div>`;
+
   const atlVal = atl
     ? `<div class="fc-price-sub ${priceClass(atl)}">${fmt(atl)}</div>`
     : `<div class="fc-price-sub price-none">—</div>`;
@@ -211,10 +276,8 @@ function renderCard(r) {
       </div>
     </div>
     <div class="fc-prices">
-      <div class="fc-price-block">
-        <div class="fc-price-label">Current</div>
-        ${priceVal}
-      </div>
+      ${nsBlock}
+      ${bdBlock}
       <div class="fc-price-block">
         <div class="fc-price-label">All-time low</div>
         ${atlVal}

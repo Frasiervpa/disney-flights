@@ -89,6 +89,16 @@ td { padding: 13px 14px; vertical-align: middle; }
 .price-mid { color: #8a6010; }
 .price-high { color: #aa2a2a; }
 
+/* Airline label */
+.airline-label { font-size: 11px; color: #6a8aaa; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+.fc-airline     { font-size: 11px; color: #6a8aaa; margin-top: 1px; }
+
+/* Stops badges */
+.stops-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 8px; margin-top: 3px; white-space: nowrap; }
+.stops-0 { background: #e4f7ed; color: #1a6a40; }
+.stops-1 { background: #fff4e0; color: #8a5a10; }
+.stops-n { background: #fde8e8; color: #8a2020; }
+
 /* Trend */
 .trend-up { color: #aa2a2a; font-size: 18px; }
 .trend-down { color: #1a7a48; font-size: 18px; }
