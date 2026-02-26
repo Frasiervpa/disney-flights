@@ -36,6 +36,21 @@ body {
 .filter-btn.active { background: #1a2a4a; border-color: #1a2a4a; color: #fff; }
 .origin-btn.active { background: #2a5a9a; border-color: #2a5a9a; color: #fff; }
 
+/* Group filter buttons */
+.group-btn { padding: 5px 14px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+.group-btn:hover { opacity: 0.85; }
+.group-btn.active { outline: 2.5px solid #1a2a4a; outline-offset: 1px; }
+
+/* Group badges in table */
+.group-badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 10px; white-space: nowrap; }
+
+/* Book button */
+.book-btn { display: inline-block; margin-top: 5px; font-size: 11px; font-weight: 700; color: #1a5a8a; background: #e0eeff; border-radius: 6px; padding: 3px 8px; text-decoration: none; white-space: nowrap; transition: background 0.15s; }
+.book-btn:hover { background: #c0daff; color: #0a3a6a; }
+
+/* sc-who (summary viewing label) */
+.sc-who { font-size: 16px; }
+
 /* Origin badges */
 .origin-badge { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 8px; white-space: nowrap; letter-spacing: 0.3px; }
 .origin-slc { background: #e0eeff; color: #1a4a8a; }

@@ -16,7 +16,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug1-aug4",
@@ -31,7 +32,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug1-aug8",
@@ -46,7 +48,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug1-aug11",
@@ -61,7 +64,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug5-aug12",
@@ -76,7 +80,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug8-aug11",
@@ -91,7 +96,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug8-aug15",
@@ -106,7 +112,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug8-aug18",
@@ -121,7 +128,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "aug12-aug19",
@@ -136,7 +144,8 @@
           "price": 190
         }
       ],
-      "origin": "SLC"
+      "origin": "SLC",
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-jul29-aug5",
@@ -146,7 +155,8 @@
       "return": "2026-08-05",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug1-aug4",
@@ -156,7 +166,8 @@
       "return": "2026-08-04",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug1-aug8",
@@ -166,7 +177,8 @@
       "return": "2026-08-08",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug1-aug11",
@@ -176,7 +188,8 @@
       "return": "2026-08-11",
       "nights": 10,
       "type": "Extended",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug5-aug12",
@@ -186,7 +199,8 @@
       "return": "2026-08-12",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug8-aug11",
@@ -196,7 +210,8 @@
       "return": "2026-08-11",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug8-aug15",
@@ -206,7 +221,8 @@
       "return": "2026-08-15",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug8-aug18",
@@ -216,7 +232,8 @@
       "return": "2026-08-18",
       "nights": 10,
       "type": "Extended",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     },
     {
       "id": "pvu-aug12-aug19",
@@ -226,7 +243,8 @@
       "return": "2026-08-19",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": []
+      "snapshots": [],
+      "group": "Mark & Megan"
     }
   ]
 }

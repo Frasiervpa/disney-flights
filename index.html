@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>✈️ Utah → MCO Flight Tracker — Disney World Aug 2026</title>
+  <title>✈️ Utah → Orlando Flight Tracker — Disney World Aug 2026</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -24,6 +24,11 @@
 
     <div class="controls">
       <div class="filter-group">
+        <span class="filter-label">Group:</span>
+        <button class="group-btn active" data-group="all">Everyone</button>
+        <!-- group buttons injected by JS -->
+      </div>
+      <div class="filter-group">
         <span class="filter-label">Airport:</span>
         <button class="origin-btn active" data-origin="all">All</button>
         <button class="origin-btn" data-origin="SLC">SLC (Salt Lake)</button>
@@ -43,6 +48,7 @@
       <table id="flightTable">
         <thead>
           <tr>
+            <th>Group</th>
             <th>From</th>
             <th>Dates</th>
             <th>Nights</th>
@@ -55,7 +61,7 @@
           </tr>
         </thead>
         <tbody id="flightBody">
-          <tr><td colspan="9" class="loading">Loading price data...</td></tr>
+          <tr><td colspan="10" class="loading">Loading price data...</td></tr>
         </tbody>
       </table>
     </div>
@@ -91,8 +97,7 @@
     </div>
 
     <footer class="site-footer">
-      <p>Prices are estimates pulled from Google Flights for 1 adult, economy class, round-trip to Orlando (MCO area).</p>
-      <p>Check directly with airlines before booking. This tracker is for trend monitoring only.</p>
+      <p>Prices are estimates from Google Flights for 1 adult, economy, round-trip to Orlando (MCO area). Check airlines before booking.</p>
     </footer>
 
   </div>
