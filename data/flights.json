@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-26T20:57:53.501642+00:00",
+  "lastUpdated": "2026-02-26T23:48:58.216778+00:00",
   "origin": "SLC",
   "destination": "MCO",
   "routes": [
@@ -14,6 +14,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -30,6 +39,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -46,6 +64,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -62,6 +89,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -78,6 +114,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -94,6 +139,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -110,6 +164,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -126,6 +189,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -142,6 +214,15 @@
         {
           "date": "2026-02-26",
           "price": 190
+        },
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
         }
       ],
       "origin": "SLC",
@@ -155,7 +236,17 @@
       "return": "2026-08-05",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -166,7 +257,17 @@
       "return": "2026-08-04",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -177,7 +278,17 @@
       "return": "2026-08-08",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -188,7 +299,17 @@
       "return": "2026-08-11",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -199,7 +320,17 @@
       "return": "2026-08-12",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -210,7 +341,17 @@
       "return": "2026-08-11",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -221,7 +362,17 @@
       "return": "2026-08-15",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -232,7 +383,17 @@
       "return": "2026-08-18",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -243,7 +404,17 @@
       "return": "2026-08-19",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-26",
+          "nonstop": null,
+          "cheapest": {
+            "price": 190,
+            "airline": "",
+            "stops": null
+          }
+        }
+      ],
       "group": "Mark & Megan"
     }
   ]
