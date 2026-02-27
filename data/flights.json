@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-26T23:48:58.216778+00:00",
+  "lastUpdated": null,
   "origin": "SLC",
   "destination": "MCO",
   "routes": [
@@ -10,21 +10,7 @@
       "return": "2026-08-05",
       "nights": 7,
       "type": "Wed\u2013Wed",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -35,21 +21,7 @@
       "return": "2026-08-04",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -60,21 +32,7 @@
       "return": "2026-08-08",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -85,21 +43,7 @@
       "return": "2026-08-11",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -110,21 +54,7 @@
       "return": "2026-08-12",
       "nights": 7,
       "type": "Wed\u2013Wed",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -135,21 +65,7 @@
       "return": "2026-08-11",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -160,21 +76,7 @@
       "return": "2026-08-15",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -185,21 +87,7 @@
       "return": "2026-08-18",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -210,21 +98,7 @@
       "return": "2026-08-19",
       "nights": 7,
       "type": "Wed\u2013Wed",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "price": 190
-        },
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -236,17 +110,7 @@
       "return": "2026-08-05",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -257,17 +121,7 @@
       "return": "2026-08-04",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -278,17 +132,7 @@
       "return": "2026-08-08",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -299,17 +143,7 @@
       "return": "2026-08-11",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -320,17 +154,7 @@
       "return": "2026-08-12",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -341,17 +165,7 @@
       "return": "2026-08-11",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -362,17 +176,7 @@
       "return": "2026-08-15",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -383,17 +187,7 @@
       "return": "2026-08-18",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     },
     {
@@ -404,17 +198,7 @@
       "return": "2026-08-19",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [
-        {
-          "date": "2026-02-26",
-          "nonstop": null,
-          "cheapest": {
-            "price": 190,
-            "airline": "",
-            "stops": null
-          }
-        }
-      ],
+      "snapshots": [],
       "group": "Mark & Megan"
     }
   ]
