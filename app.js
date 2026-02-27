@@ -148,19 +148,26 @@ function isHidden(r) {
   return false;
 }
 
-// ID of the single cheapest visible route (for Best Pick badge)
-function bestPickId() {
+// Top 3 cheapest visible routes — returns [{id, rank}]
+function topPicks() {
   const visible = allRoutes.filter(r => !isHidden(r));
   const useNs = stopsFilter === 'nonstop';
-  const withPrice = visible.map(r => ({ r, snap: useNs ? latestNonstop(r) : latestPrice(r) }))
-                           .filter(x => x.snap && (useNs ? x.snap.nonstopPrice : x.snap.price));
-  if (!withPrice.length) return null;
-  const best = withPrice.reduce((a, b) => {
-    const pa = useNs ? a.snap.nonstopPrice : a.snap.price;
-    const pb = useNs ? b.snap.nonstopPrice : b.snap.price;
-    return pa <= pb ? a : b;
-  });
-  return best.r.id;
+  const withPrice = visible.map(r => {
+    const snap = useNs ? latestNonstop(r) : latestPrice(r);
+    const price = snap ? (useNs ? snap.nonstopPrice : snap.price) : null;
+    return { r, price };
+  }).filter(x => x.price);
+  withPrice.sort((a, b) => a.price - b.price);
+  return withPrice.slice(0, 3).map((x, i) => ({ id: x.r.id, rank: i + 1 }));
+}
+
+// Sort routes so top picks appear first, hidden last
+function sortedRoutes() {
+  const picks = topPicks();
+  const pickIds = picks.map(p => p.id);
+  const tops    = pickIds.map(id => allRoutes.find(r => r.id === id)).filter(Boolean);
+  const rest    = allRoutes.filter(r => !pickIds.includes(r.id));
+  return [...tops, ...rest];
 }
 
 function groupColor(group) {
@@ -203,8 +210,8 @@ function renderRow(r) {
   const gBadge = gLabel
     ? `<span class="group-badge" style="background:${groupColor(gLabel)};color:${groupTextColor(gLabel)}">${gLabel}</span>`
     : '';
-  const isBest = r.id === bestPickId();
-  const bestBadge = isBest ? `<span class="best-badge">★ Best Pick</span>` : '';
+  const pick = topPicks().find(p => p.id === r.id);
+  const bestBadge = pick ? `<span class="best-badge rank-${pick.rank}">★ #${pick.rank}</span>` : '';
 
   return `<tr data-type="${r.type}" data-origin="${r.origin}" data-group="${r.group||''}" class="${isHidden(r)?'hidden':''}">
     <td>${gBadge}${bestBadge}</td>
@@ -303,13 +310,13 @@ function renderCard(r) {
     ? `<div class="fc-price-sub ${priceClass(atl)}">${fmt(atl)}</div>`
     : `<div class="fc-price-sub price-none">—</div>`;
 
-  const isBest = r.id === bestPickId();
+  const pick = topPicks().find(p => p.id === r.id);
 
-  return `<div class="fc${isHidden(r)?' hidden':''}${isBest?' fc-best':''}" data-type="${r.type}" data-origin="${r.origin}" data-group="${r.group||''}">
+  return `<div class="fc${isHidden(r)?' hidden':''}${pick?' fc-best':''}" data-type="${r.type}" data-origin="${r.origin}" data-group="${r.group||''}">
     <div class="fc-header">
       <div class="fc-badges">
         ${gBadge}
-        ${isBest ? `<span class="best-badge">★ Best Pick</span>` : ''}
+        ${pick ? `<span class="best-badge rank-${pick.rank}">★ #${pick.rank}</span>` : ''}
         <span class="origin-badge origin-${r.origin.toLowerCase()}">${r.origin}</span>
         <span class="type-badge ${typeClass(r.type)}">${r.type}</span>
       </div>
@@ -335,14 +342,14 @@ function renderCard(r) {
 
 function renderCards() {
   const el = document.getElementById('flightCards');
-  if (el) el.innerHTML = allRoutes.map(renderCard).join('');
+  if (el) el.innerHTML = sortedRoutes().map(renderCard).join('');
 }
 
 // ── Filters ───────────────────────────────────────────────────────────────
 
 function applyFilters() {
   // Re-render rows and cards fully so Best Pick badge updates correctly
-  document.getElementById('flightBody').innerHTML = allRoutes.map(renderRow).join('');
+  document.getElementById('flightBody').innerHTML = sortedRoutes().map(renderRow).join('');
   renderCards();
   renderSummary();
   buildAirlineButtons();
@@ -405,7 +412,7 @@ async function load() {
     allRoutes = data.routes || [];
     buildGroupButtons(allRoutes);
     buildAirlineButtons();
-    document.getElementById('flightBody').innerHTML = allRoutes.map(renderRow).join('');
+    document.getElementById('flightBody').innerHTML = sortedRoutes().map(renderRow).join('');
     renderCards();
     renderSummary();
   } catch(e) {
