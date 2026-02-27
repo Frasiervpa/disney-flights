@@ -6,7 +6,7 @@ let activeFilter  = 'all';
 let activeOrigin  = 'all';
 let activeGroup   = 'all';
 let activeAirline = 'all';
-let nonstopOnly   = false;
+let stopsFilter   = 'all'; // 'all' | 'nonstop' | 'layover'
 
 const PRICE_LOW  = 300;
 const PRICE_HIGH = 550;
@@ -135,7 +135,12 @@ function isHidden(r) {
   if (activeGroup  !== 'all' && r.group  !== activeGroup)  return true;
   if (activeOrigin !== 'all' && r.origin !== activeOrigin) return true;
   if (activeFilter !== 'all' && r.type   !== activeFilter) return true;
-  if (nonstopOnly  && !latestNonstop(r))                   return true;
+  if (stopsFilter === 'nonstop' && !latestNonstop(r))      return true;
+  if (stopsFilter === 'layover' && !latestPrice(r))        return true;
+  if (stopsFilter === 'layover') {
+    const ch = latestPrice(r);
+    if (ch && ch.stops === 0) return true; // cheapest is nonstop — not a layover route
+  }
   if (activeAirline !== 'all') {
     const airlines = routeAirlines(r);
     if (!airlines.has(activeAirline)) return true;
@@ -146,12 +151,13 @@ function isHidden(r) {
 // ID of the single cheapest visible route (for Best Pick badge)
 function bestPickId() {
   const visible = allRoutes.filter(r => !isHidden(r));
-  const withPrice = visible.map(r => ({ r, snap: nonstopOnly ? latestNonstop(r) : latestPrice(r) }))
-                           .filter(x => x.snap && (nonstopOnly ? x.snap.nonstopPrice : x.snap.price));
+  const useNs = stopsFilter === 'nonstop';
+  const withPrice = visible.map(r => ({ r, snap: useNs ? latestNonstop(r) : latestPrice(r) }))
+                           .filter(x => x.snap && (useNs ? x.snap.nonstopPrice : x.snap.price));
   if (!withPrice.length) return null;
   const best = withPrice.reduce((a, b) => {
-    const pa = nonstopOnly ? a.snap.nonstopPrice : a.snap.price;
-    const pb = nonstopOnly ? b.snap.nonstopPrice : b.snap.price;
+    const pa = useNs ? a.snap.nonstopPrice : a.snap.price;
+    const pb = useNs ? b.snap.nonstopPrice : b.snap.price;
     return pa <= pb ? a : b;
   });
   return best.r.id;
@@ -370,7 +376,7 @@ function buildAirlineButtons() {
     if (activeGroup  !== 'all' && r.group  !== activeGroup)  return false;
     if (activeOrigin !== 'all' && r.origin !== activeOrigin) return false;
     if (activeFilter !== 'all' && r.type   !== activeFilter) return false;
-    if (nonstopOnly  && !latestNonstop(r))                   return false;
+    if (stopsFilter === 'nonstop' && !latestNonstop(r))      return false;
     return true;
   });
   const airlines = [...new Set(visible.flatMap(r => [...routeAirlines(r)]))].sort();
@@ -443,11 +449,12 @@ document.getElementById('csSearch').addEventListener('click', () => {
   window.open(buildFlightsUrl(dep, ret, origin), '_blank');
 });
 
-document.getElementById('nonstopToggle')?.addEventListener('click', function() {
-  nonstopOnly = !nonstopOnly;
-  this.classList.toggle('active', nonstopOnly);
-  this.textContent = nonstopOnly ? '✈ Nonstop only' : '✈ Any stops';
-  applyFilters();
+document.querySelectorAll('.stops-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    stopsFilter = btn.dataset.stops;
+    document.querySelectorAll('.stops-btn').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
 });
 
 load();

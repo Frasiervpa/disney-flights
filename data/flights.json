@@ -653,7 +653,7 @@
     },
     {
       "id": "slc-aug4-aug11",
-      "group": "Camille",
+      "group": "Camille and Clint",
       "origin": "SLC",
       "depart": "2026-08-04",
       "return": "2026-08-11",
@@ -677,7 +677,7 @@
     },
     {
       "id": "slc-aug4-aug12",
-      "group": "Camille",
+      "group": "Camille and Clint",
       "origin": "SLC",
       "depart": "2026-08-04",
       "return": "2026-08-12",
@@ -701,7 +701,7 @@
     },
     {
       "id": "slc-aug5-aug12",
-      "group": "Camille",
+      "group": "Camille and Clint",
       "origin": "SLC",
       "depart": "2026-08-05",
       "return": "2026-08-12",
@@ -725,7 +725,7 @@
     },
     {
       "id": "pvu-aug4-aug11",
-      "group": "Camille",
+      "group": "Camille and Clint",
       "origin": "PVU",
       "depart": "2026-08-04",
       "return": "2026-08-11",
@@ -749,7 +749,7 @@
     },
     {
       "id": "pvu-aug4-aug12",
-      "group": "Camille",
+      "group": "Camille and Clint",
       "origin": "PVU",
       "depart": "2026-08-04",
       "return": "2026-08-12",
@@ -773,7 +773,7 @@
     },
     {
       "id": "pvu-aug5-aug12",
-      "group": "Camille",
+      "group": "Camille and Clint",
       "origin": "PVU",
       "depart": "2026-08-05",
       "return": "2026-08-12",
@@ -794,6 +794,116 @@
           }
         }
       ]
+    },
+    {
+      "id": "slc-aug1-aug9",
+      "group": "Mark & Megan",
+      "origin": "SLC",
+      "depart": "2026-08-01",
+      "return": "2026-08-09",
+      "label": "Aug 1 \u2192 Aug 9",
+      "nights": 8,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "slc-aug1-aug10",
+      "group": "Mark & Megan",
+      "origin": "SLC",
+      "depart": "2026-08-01",
+      "return": "2026-08-10",
+      "label": "Aug 1 \u2192 Aug 10",
+      "nights": 9,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug1-aug9",
+      "group": "Mark & Megan",
+      "origin": "PVU",
+      "depart": "2026-08-01",
+      "return": "2026-08-09",
+      "label": "Aug 1 \u2192 Aug 9",
+      "nights": 8,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug1-aug10",
+      "group": "Mark & Megan",
+      "origin": "PVU",
+      "depart": "2026-08-01",
+      "return": "2026-08-10",
+      "label": "Aug 1 \u2192 Aug 10",
+      "nights": 9,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "slc-sc-aug4-aug11",
+      "group": "Steve and Carol",
+      "origin": "SLC",
+      "depart": "2026-08-04",
+      "return": "2026-08-11",
+      "label": "Aug 4 \u2192 Aug 11",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "slc-sc-aug4-aug12",
+      "group": "Steve and Carol",
+      "origin": "SLC",
+      "depart": "2026-08-04",
+      "return": "2026-08-12",
+      "label": "Aug 4 \u2192 Aug 12",
+      "nights": 8,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "slc-sc-aug5-aug12",
+      "group": "Steve and Carol",
+      "origin": "SLC",
+      "depart": "2026-08-05",
+      "return": "2026-08-12",
+      "label": "Aug 5 \u2192 Aug 12",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-sc-aug4-aug11",
+      "group": "Steve and Carol",
+      "origin": "PVU",
+      "depart": "2026-08-04",
+      "return": "2026-08-11",
+      "label": "Aug 4 \u2192 Aug 11",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-sc-aug4-aug12",
+      "group": "Steve and Carol",
+      "origin": "PVU",
+      "depart": "2026-08-04",
+      "return": "2026-08-12",
+      "label": "Aug 4 \u2192 Aug 12",
+      "nights": 8,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-sc-aug5-aug12",
+      "group": "Steve and Carol",
+      "origin": "PVU",
+      "depart": "2026-08-05",
+      "return": "2026-08-12",
+      "label": "Aug 5 \u2192 Aug 12",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
     }
   ]
 }

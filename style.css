@@ -98,8 +98,10 @@ td { padding: 13px 14px; vertical-align: middle; }
 .airline-btn:hover { border-color: #5aabdf; color: #1a5a8a; }
 .airline-btn.active { background: #2a6a4a; border-color: #2a6a4a; color: #fff; }
 
-/* Nonstop toggle — active state */
-#nonstopToggle.active { background: #2a5a9a; border-color: #2a5a9a; color: #fff; }
+/* Stops filter buttons */
+.stops-btn { padding: 5px 14px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+.stops-btn:hover { border-color: #5aabdf; color: #1a5a8a; }
+.stops-btn.active { background: #1a2a4a; border-color: #1a2a4a; color: #fff; }
 
 /* Airline label */
 .airline-label { font-size: 11px; color: #6a8aaa; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
