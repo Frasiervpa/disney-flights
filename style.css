@@ -89,6 +89,18 @@ td { padding: 13px 14px; vertical-align: middle; }
 .price-mid { color: #8a6010; }
 .price-high { color: #aa2a2a; }
 
+/* Best Pick badge */
+.best-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; background: #fff3cd; color: #8a6010; border: 1px solid #e8c84a; margin-left: 4px; white-space: nowrap; }
+.fc-best { border: 2px solid #e8c84a; }
+
+/* Airline filter buttons */
+.airline-btn { padding: 5px 12px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 12px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.airline-btn:hover { border-color: #5aabdf; color: #1a5a8a; }
+.airline-btn.active { background: #2a6a4a; border-color: #2a6a4a; color: #fff; }
+
+/* Nonstop toggle — active state */
+#nonstopToggle.active { background: #2a5a9a; border-color: #2a5a9a; color: #fff; }
+
 /* Airline label */
 .airline-label { font-size: 11px; color: #6a8aaa; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
 .fc-airline     { font-size: 11px; color: #6a8aaa; margin-top: 1px; }

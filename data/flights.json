@@ -434,6 +434,72 @@
         }
       ],
       "group": "Mark & Megan"
+    },
+    {
+      "id": "slc-aug4-aug11",
+      "group": "Camille",
+      "origin": "SLC",
+      "depart": "2026-08-04",
+      "return": "2026-08-11",
+      "label": "Aug 4 \u2192 Aug 11",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "slc-aug4-aug12",
+      "group": "Camille",
+      "origin": "SLC",
+      "depart": "2026-08-04",
+      "return": "2026-08-12",
+      "label": "Aug 4 \u2192 Aug 12",
+      "nights": 8,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "slc-aug5-aug12",
+      "group": "Camille",
+      "origin": "SLC",
+      "depart": "2026-08-05",
+      "return": "2026-08-12",
+      "label": "Aug 5 \u2192 Aug 12",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug4-aug11",
+      "group": "Camille",
+      "origin": "PVU",
+      "depart": "2026-08-04",
+      "return": "2026-08-11",
+      "label": "Aug 4 \u2192 Aug 11",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug4-aug12",
+      "group": "Camille",
+      "origin": "PVU",
+      "depart": "2026-08-04",
+      "return": "2026-08-12",
+      "label": "Aug 4 \u2192 Aug 12",
+      "nights": 8,
+      "type": "Extended",
+      "snapshots": []
+    },
+    {
+      "id": "pvu-aug5-aug12",
+      "group": "Camille",
+      "origin": "PVU",
+      "depart": "2026-08-05",
+      "return": "2026-08-12",
+      "label": "Aug 5 \u2192 Aug 12",
+      "nights": 7,
+      "type": "1 Week",
+      "snapshots": []
     }
   ]
 }

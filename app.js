@@ -1,10 +1,12 @@
 // ── Flight Tracker ────────────────────────────────────────────────────────
 
 const DATA_URL = 'data/flights.json';
-let allRoutes    = [];
-let activeFilter = 'all';
-let activeOrigin = 'all';
-let activeGroup  = 'all';
+let allRoutes     = [];
+let activeFilter  = 'all';
+let activeOrigin  = 'all';
+let activeGroup   = 'all';
+let activeAirline = 'all';
+let nonstopOnly   = false;
 
 const PRICE_LOW  = 300;
 const PRICE_HIGH = 550;
@@ -119,10 +121,40 @@ function buildFlightsUrl(depart, ret, originKey) {
 
 // ── Row rendering ─────────────────────────────────────────────────────────
 
+function routeAirlines(r) {
+  // Returns set of airlines mentioned in latest snapshot
+  const latest  = latestPrice(r);
+  const nonstop = latestNonstop(r);
+  const set = new Set();
+  if (latest  && latest.airline)  set.add(latest.airline);
+  if (nonstop && nonstop.nonstopAirline) set.add(nonstop.nonstopAirline);
+  return set;
+}
+
 function isHidden(r) {
-  return (activeGroup  !== 'all' && r.group  !== activeGroup)  ||
-         (activeOrigin !== 'all' && r.origin !== activeOrigin) ||
-         (activeFilter !== 'all' && r.type   !== activeFilter);
+  if (activeGroup  !== 'all' && r.group  !== activeGroup)  return true;
+  if (activeOrigin !== 'all' && r.origin !== activeOrigin) return true;
+  if (activeFilter !== 'all' && r.type   !== activeFilter) return true;
+  if (nonstopOnly  && !latestNonstop(r))                   return true;
+  if (activeAirline !== 'all') {
+    const airlines = routeAirlines(r);
+    if (!airlines.has(activeAirline)) return true;
+  }
+  return false;
+}
+
+// ID of the single cheapest visible route (for Best Pick badge)
+function bestPickId() {
+  const visible = allRoutes.filter(r => !isHidden(r));
+  const withPrice = visible.map(r => ({ r, snap: nonstopOnly ? latestNonstop(r) : latestPrice(r) }))
+                           .filter(x => x.snap && (nonstopOnly ? x.snap.nonstopPrice : x.snap.price));
+  if (!withPrice.length) return null;
+  const best = withPrice.reduce((a, b) => {
+    const pa = nonstopOnly ? a.snap.nonstopPrice : a.snap.price;
+    const pb = nonstopOnly ? b.snap.nonstopPrice : b.snap.price;
+    return pa <= pb ? a : b;
+  });
+  return best.r.id;
 }
 
 function groupColor(group) {
@@ -165,9 +197,11 @@ function renderRow(r) {
   const gBadge = gLabel
     ? `<span class="group-badge" style="background:${groupColor(gLabel)};color:${groupTextColor(gLabel)}">${gLabel}</span>`
     : '';
+  const isBest = r.id === bestPickId();
+  const bestBadge = isBest ? `<span class="best-badge">★ Best Pick</span>` : '';
 
   return `<tr data-type="${r.type}" data-origin="${r.origin}" data-group="${r.group||''}" class="${isHidden(r)?'hidden':''}">
-    <td>${gBadge}</td>
+    <td>${gBadge}${bestBadge}</td>
     <td><span class="origin-badge origin-${r.origin.toLowerCase()}">${r.origin}</span></td>
     <td><div class="date-label">${r.label}</div></td>
     <td>${r.nights}</td>
@@ -263,10 +297,13 @@ function renderCard(r) {
     ? `<div class="fc-price-sub ${priceClass(atl)}">${fmt(atl)}</div>`
     : `<div class="fc-price-sub price-none">—</div>`;
 
-  return `<div class="fc${isHidden(r)?' hidden':''}" data-type="${r.type}" data-origin="${r.origin}" data-group="${r.group||''}">
+  const isBest = r.id === bestPickId();
+
+  return `<div class="fc${isHidden(r)?' hidden':''}${isBest?' fc-best':''}" data-type="${r.type}" data-origin="${r.origin}" data-group="${r.group||''}">
     <div class="fc-header">
       <div class="fc-badges">
         ${gBadge}
+        ${isBest ? `<span class="best-badge">★ Best Pick</span>` : ''}
         <span class="origin-badge origin-${r.origin.toLowerCase()}">${r.origin}</span>
         <span class="type-badge ${typeClass(r.type)}">${r.type}</span>
       </div>
@@ -298,19 +335,11 @@ function renderCards() {
 // ── Filters ───────────────────────────────────────────────────────────────
 
 function applyFilters() {
-  document.querySelectorAll('#flightBody tr[data-type]').forEach(row => {
-    const hide = (activeGroup  !== 'all' && row.dataset.group  !== activeGroup)  ||
-                 (activeOrigin !== 'all' && row.dataset.origin !== activeOrigin) ||
-                 (activeFilter !== 'all' && row.dataset.type   !== activeFilter);
-    row.classList.toggle('hidden', hide);
-  });
-  document.querySelectorAll('#flightCards .fc[data-type]').forEach(card => {
-    const hide = (activeGroup  !== 'all' && card.dataset.group  !== activeGroup)  ||
-                 (activeOrigin !== 'all' && card.dataset.origin !== activeOrigin) ||
-                 (activeFilter !== 'all' && card.dataset.type   !== activeFilter);
-    card.classList.toggle('hidden', hide);
-  });
+  // Re-render rows and cards fully so Best Pick badge updates correctly
+  document.getElementById('flightBody').innerHTML = allRoutes.map(renderRow).join('');
+  renderCards();
   renderSummary();
+  buildAirlineButtons();
 }
 
 function buildGroupButtons(routes) {
@@ -332,6 +361,29 @@ function buildGroupButtons(routes) {
   });
 }
 
+function buildAirlineButtons() {
+  const container = document.getElementById('airlineFilters');
+  if (!container) return;
+  // Collect airlines from currently visible routes
+  const visible = allRoutes.filter(r => {
+    // Ignore airline filter itself when building
+    if (activeGroup  !== 'all' && r.group  !== activeGroup)  return false;
+    if (activeOrigin !== 'all' && r.origin !== activeOrigin) return false;
+    if (activeFilter !== 'all' && r.type   !== activeFilter) return false;
+    if (nonstopOnly  && !latestNonstop(r))                   return false;
+    return true;
+  });
+  const airlines = [...new Set(visible.flatMap(r => [...routeAirlines(r)]))].sort();
+  container.innerHTML = `<button class="airline-btn${activeAirline==='all'?' active':''}" data-airline="all">All airlines</button>` +
+    airlines.map(a => `<button class="airline-btn${activeAirline===a?' active':''}" data-airline="${a}">${a}</button>`).join('');
+  container.querySelectorAll('.airline-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeAirline = btn.dataset.airline;
+      applyFilters();
+    });
+  });
+}
+
 // ── Load ──────────────────────────────────────────────────────────────────
 
 async function load() {
@@ -346,6 +398,7 @@ async function load() {
 
     allRoutes = data.routes || [];
     buildGroupButtons(allRoutes);
+    buildAirlineButtons();
     document.getElementById('flightBody').innerHTML = allRoutes.map(renderRow).join('');
     renderCards();
     renderSummary();
@@ -388,6 +441,13 @@ document.getElementById('csSearch').addEventListener('click', () => {
   if (!dep || !ret) { alert('Please select both dates.'); return; }
   if (ret <= dep)   { alert('Return must be after departure.'); return; }
   window.open(buildFlightsUrl(dep, ret, origin), '_blank');
+});
+
+document.getElementById('nonstopToggle')?.addEventListener('click', function() {
+  nonstopOnly = !nonstopOnly;
+  this.classList.toggle('active', nonstopOnly);
+  this.textContent = nonstopOnly ? '✈ Nonstop only' : '✈ Any stops';
+  applyFilters();
 });
 
 load();
