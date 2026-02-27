@@ -1,5 +1,5 @@
 {
-  "lastUpdated": null,
+  "lastUpdated": "2026-02-27T00:03:23.288023+00:00",
   "origin": "SLC",
   "destination": "MCO",
   "routes": [
@@ -10,7 +10,20 @@
       "return": "2026-08-05",
       "nights": 7,
       "type": "Wed\u2013Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -21,7 +34,20 @@
       "return": "2026-08-04",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -32,7 +58,20 @@
       "return": "2026-08-08",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -43,7 +82,20 @@
       "return": "2026-08-11",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -54,7 +106,20 @@
       "return": "2026-08-12",
       "nights": 7,
       "type": "Wed\u2013Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -65,7 +130,20 @@
       "return": "2026-08-11",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -76,7 +154,20 @@
       "return": "2026-08-15",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -87,7 +178,20 @@
       "return": "2026-08-18",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -98,7 +202,20 @@
       "return": "2026-08-19",
       "nights": 7,
       "type": "Wed\u2013Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 399,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "origin": "SLC",
       "group": "Mark & Megan"
     },
@@ -110,7 +227,20 @@
       "return": "2026-08-05",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 268,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -121,7 +251,20 @@
       "return": "2026-08-04",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 298,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -132,7 +275,20 @@
       "return": "2026-08-08",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 358,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -143,7 +299,20 @@
       "return": "2026-08-11",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 318,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -154,7 +323,20 @@
       "return": "2026-08-12",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 248,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 248,
+            "airline": "Breeze",
+            "stops": 0
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -165,7 +347,20 @@
       "return": "2026-08-11",
       "nights": 3,
       "type": "Weekend",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 298,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -176,7 +371,20 @@
       "return": "2026-08-15",
       "nights": 7,
       "type": "1 Week",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 268,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 268,
+            "airline": "Breeze",
+            "stops": 0
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -187,7 +395,20 @@
       "return": "2026-08-18",
       "nights": 10,
       "type": "Extended",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 308,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        }
+      ],
       "group": "Mark & Megan"
     },
     {
@@ -198,7 +419,20 @@
       "return": "2026-08-19",
       "nights": 7,
       "type": "Wed-Wed",
-      "snapshots": [],
+      "snapshots": [
+        {
+          "date": "2026-02-27",
+          "nonstop": {
+            "price": 248,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 248,
+            "airline": "Breeze",
+            "stops": 0
+          }
+        }
+      ],
       "group": "Mark & Megan"
     }
   ]
