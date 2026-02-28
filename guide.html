@@ -457,6 +457,243 @@
     </div>
   </div>
 
+  <!-- ── Price Calendar ───────────────────────────────────────────────── -->
+  <div class="g-section">
+    <div class="g-section-title">📅 August 2026 — Per-Day Price Calendar</div>
+    <div class="g-section-sub">Per-person, per-day price by ticket start date. Prices from Disney's official site (Feb 2026). The "+" means price may vary by park — Magic Kingdom is always highest.</div>
+
+    <!-- Controls -->
+    <div class="cal-controls">
+      <div class="cal-tabs" id="calTabs">
+        <button class="cal-tab active" data-days="3">3-Day</button>
+        <button class="cal-tab" data-days="4">4-Day</button>
+        <button class="cal-tab" data-days="6">6-Day</button>
+      </div>
+      <label class="mil-toggle">
+        <input type="checkbox" id="milToggle" /> Show military price (−20%)
+      </label>
+    </div>
+
+    <!-- Total line -->
+    <div class="cal-total-line" id="calTotalLine"></div>
+
+    <!-- Calendar grid -->
+    <div class="cal-wrap" id="calWrap"></div>
+
+    <!-- Legend -->
+    <div class="cal-legend">
+      <span class="leg-item"><span class="leg-swatch" style="background:#c8eed8;border:1px solid #2a9a60"></span> Cheapest</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#fff3cd;border:1px solid #e8c84a"></span> Mid-range</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#fde8e8;border:1px solid #cc3a3a"></span> Most expensive</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#e8f0ff;border:2px solid #5aabdf"></span> Your group windows</span>
+    </div>
+
+    <div class="ticket-note" style="margin-top:14px;">
+      <strong>How to read this:</strong> Each date shows the per-day cost if you start your ticket on that day. Multiply by your day count for the total ticket cost. Prices sourced directly from Disney's calendar (screenshots Feb 2026). Update when Disney changes pricing.
+    </div>
+  </div>
+
+  <style>
+    /* Calendar controls */
+    .cal-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .cal-tabs { display: flex; gap: 6px; }
+    .cal-tab { padding: 7px 20px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+    .cal-tab:hover { border-color: #5aabdf; }
+    .cal-tab.active { background: #1a2a4a; border-color: #1a2a4a; color: #fff; }
+    .mil-toggle { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #4a6a8a; cursor: pointer; margin-left: auto; }
+    .mil-toggle input { accent-color: #2a9a60; width: 15px; height: 15px; }
+    .cal-total-line { font-size: 13px; color: #4a6a7a; margin-bottom: 12px; min-height: 18px; }
+    .cal-total-line strong { color: #1a2a4a; }
+
+    /* Calendar grid */
+    .cal-wrap { overflow-x: auto; }
+    .cal-grid { width: 100%; border-collapse: collapse; min-width: 560px; }
+    .cal-grid th { background: #1a2a4a; color: #a0c0e0; font-weight: 600; font-size: 12px; text-align: center; padding: 8px 4px; }
+    .cal-grid td { border: 1px solid #e0eaf2; vertical-align: top; padding: 0; width: 14.28%; height: 72px; }
+    .cal-cell { padding: 5px 7px; height: 100%; box-sizing: border-box; position: relative; }
+    .cal-date { font-size: 11px; color: #8aaabb; font-weight: 600; }
+    .cal-price { font-size: 16px; font-weight: 700; color: #1a2a4a; margin-top: 6px; }
+    .cal-total { font-size: 10px; color: #6a8aaa; margin-top: 2px; }
+    .cal-empty { background: #f8fafc; }
+    .cal-group-dot { position: absolute; bottom: 4px; right: 5px; display: flex; gap: 2px; }
+    .gdot { width: 6px; height: 6px; border-radius: 50%; }
+
+    /* Legend */
+    .cal-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+    .leg-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #4a6a8a; }
+    .leg-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+
+    @media (max-width: 640px) {
+      .cal-price { font-size: 13px; }
+      .cal-grid td { height: 58px; }
+      .mil-toggle { margin-left: 0; }
+    }
+  </style>
+
+  <script>
+  (function() {
+    // ── Price data (per-day, source: Disney site Feb 2026) ──────────────
+    const PRICES = {
+      3: { // 3-day ticket — per day price
+        1:154, 2:151, 3:148, 4:149, 5:150, 6:150, 7:149, 8:148,
+        9:146, 10:145, 11:147, 12:148, 13:149, 14:145, 15:141,
+        16:135, 17:130, 18:128, 19:131, 20:129, 21:131, 22:133,
+        23:133, 24:134, 25:138, 26:141, 27:143, 28:141, 29:140,
+        30:137, 31:136
+      },
+      4: { // 4-day ticket — per day price
+        1:146, 2:145, 3:145, 4:144, 5:143, 6:142, 7:142, 8:143,
+        9:142, 10:141, 11:141, 12:138, 13:137, 14:135, 15:131,
+        16:128, 17:127, 18:123, 19:124, 20:125, 21:127, 22:130,
+        23:131, 24:131, 25:134, 26:134, 27:133, 28:133, 29:133,
+        30:133, 31:133
+      },
+      6: { // 6-day ticket — per day price
+        1:113, 2:111, 3:110, 4:109, 5:109, 6:109, 7:110, 8:108,
+        9:107, 10:104, 11:103, 12:102, 13:102, 14:102, 15:98,
+        16:96, 17:94, 18:94, 19:95, 20:96, 21:97, 22:99,
+        23:100, 24:99, 25:100, 26:100, 27:100, 28:103, 29:103,
+        30:101, 31:100
+      }
+    };
+
+    // Group windows: [startDay, endDay] in August (days that are WITHIN the stay)
+    const GROUP_WINDOWS = {
+      'Mark & Megan': [
+        [1,5],[1,8],[1,9],[1,10],[5,12],[8,15],[12,19]
+      ],
+      'Camille & Clint': [[4,11],[4,12],[5,12]],
+      'Steve & Carol':   [[4,11],[4,12],[5,12]],
+      'James & Krista':  [[1,11],[1,12],[2,12],[2,13]]
+    };
+
+    const GROUP_COLORS = {
+      'Mark & Megan':   '#5aabdf',
+      'Camille & Clint':'#9a4adf',
+      'Steve & Carol':  '#2a9a60',
+      'James & Krista': '#e87a2a'
+    };
+
+    let activeDays = 3;
+    let milOn = false;
+
+    function priceColor(val, min, max) {
+      const pct = (val - min) / (max - min); // 0=cheapest, 1=most expensive
+      if (pct <= 0.25)      return { bg: '#c8eed8', border: '#2a9a60' };
+      if (pct <= 0.50)      return { bg: '#e8f8e0', border: '#6aba80' };
+      if (pct <= 0.75)      return { bg: '#fff8dd', border: '#e8c84a' };
+      return                       { bg: '#fde8e8', border: '#cc3a3a' };
+    }
+
+    function groupsForDay(day) {
+      const hits = [];
+      for (const [grp, windows] of Object.entries(GROUP_WINDOWS)) {
+        for (const [s, e] of windows) {
+          if (day >= s && day <= e) { hits.push(grp); break; }
+        }
+      }
+      return hits;
+    }
+
+    function renderCalendar() {
+      const data = PRICES[activeDays];
+      const vals = Object.values(data);
+      const min = Math.min(...vals);
+      const max = Math.max(...vals);
+      const mult = milOn ? 0.8 : 1;
+
+      // Total range line
+      const totalMin = Math.round(min * activeDays * mult);
+      const totalMax = Math.round(max * activeDays * mult);
+      const label = milOn ? ' (military −20%)' : '';
+      document.getElementById('calTotalLine').innerHTML =
+        `<strong>${activeDays}-day total range in August:</strong> $${totalMin}–$${totalMax}${label} &nbsp;·&nbsp; Cheapest start date: Aug ${Object.entries(data).find(([,v])=>v===min)[0]} ($${Math.round(min*activeDays*mult)} total)`;
+
+      // Aug 2026 starts on Saturday (day index 6, Sun=0)
+      const firstDow = 6; // Saturday
+      const days = 31;
+
+      let html = `<table class="cal-grid">
+        <thead><tr>
+          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr></thead><tbody>`;
+
+      let col = 0;
+      let row = '<tr>';
+
+      // Empty cells before Aug 1
+      for (let i = 0; i < firstDow; i++) {
+        row += '<td class="cal-empty"></td>';
+        col++;
+      }
+
+      for (let d = 1; d <= days; d++) {
+        const raw = data[d];
+        const price = Math.round(raw * mult);
+        const total = Math.round(raw * activeDays * mult);
+        const col_info = priceColor(raw, min, max);
+        const grps = groupsForDay(d);
+        const isGroupDay = grps.length > 0;
+
+        const dotHtml = grps.map(g =>
+          `<span class="gdot" style="background:${GROUP_COLORS[g]}" title="${g}"></span>`
+        ).join('');
+
+        const cellBg = isGroupDay ? '#e8f0ff' : col_info.bg;
+        const cellBorder = isGroupDay ? '2px solid #5aabdf' : `1px solid ${col_info.border}`;
+
+        row += `<td style="border:${cellBorder}">
+          <div class="cal-cell" style="background:${cellBg}">
+            <div class="cal-date">${d}</div>
+            <div class="cal-price">$${price}+</div>
+            <div class="cal-total">$${total} total</div>
+            ${dotHtml ? `<div class="cal-group-dot">${dotHtml}</div>` : ''}
+          </div>
+        </td>`;
+        col++;
+
+        if (col % 7 === 0) {
+          row += '</tr>';
+          html += row;
+          row = '<tr>';
+          col = 0;
+        }
+      }
+
+      // Remaining empty cells
+      if (col > 0) {
+        while (col % 7 !== 0) {
+          row += '<td class="cal-empty"></td>';
+          col++;
+        }
+        row += '</tr>';
+        html += row;
+      }
+
+      html += '</tbody></table>';
+      document.getElementById('calWrap').innerHTML = html;
+    }
+
+    // Tab clicks
+    document.getElementById('calTabs').addEventListener('click', e => {
+      const btn = e.target.closest('.cal-tab');
+      if (!btn) return;
+      document.querySelectorAll('.cal-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeDays = parseInt(btn.dataset.days);
+      renderCalendar();
+    });
+
+    // Military toggle
+    document.getElementById('milToggle').addEventListener('change', e => {
+      milOn = e.target.checked;
+      renderCalendar();
+    });
+
+    renderCalendar();
+  })();
+  </script>
+
   <!-- ── Planning Notes ─────────────────────────────────────────────── -->
   <div class="g-section">
     <div class="g-section-title">📋 Planning Notes</div>
