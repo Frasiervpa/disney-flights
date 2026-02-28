@@ -188,13 +188,8 @@
       🪖 <strong>Military pricing applies to everyone.</strong> James is purchasing all tickets through a military base (MWR/ITT) in Utah — the discount extends to the full party. Estimate uses 20% off; confirm exact rate with James closer to purchase.
     </div>
 
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-      <span style="font-size:13px;font-weight:600;color:#4a6a8a;">⚡ Lightning Lane:</span>
-      <div class="cg-tabs" id="llTabs">
-        <button class="cg-tab active" data-ll="0">None</button>
-        <button class="cg-tab" data-ll="30">Multi Pass (~$30/day)</button>
-        <button class="cg-tab" data-ll="55">Multi + Single (~$55/day)</button>
-      </div>
+    <div style="margin-bottom:14px;">
+      <button id="llToggle" class="cg-tab" data-on="false" style="font-size:13px;padding:8px 18px;">⚡ Add Lightning Lane pricing (~$30/day per person)</button>
     </div>
 
     <div style="overflow-x:auto;">
@@ -205,27 +200,18 @@
             <th>People</th>
             <th>Ticket Days</th>
             <th>Best Start</th>
-            <th>Ticket/Person (mil)</th>
-            <th>LL Add-on/Person</th>
-            <th>Total/Person</th>
+            <th>Per-Day Rate</th>
+            <th>Ticket Total/Person</th>
+            <th id="llColHead" style="display:none">Lightning Lane/Person</th>
             <th>Group Total</th>
           </tr>
         </thead>
         <tbody id="costBody"></tbody>
-        <tfoot>
-          <tr>
-            <td colspan="7" style="text-align:right;padding-right:16px;">
-              <span class="grand-std" id="grandStd"></span>&nbsp;&nbsp;
-              Grand Total (military est.)
-            </td>
-            <td class="grand-mil" id="grandMil"></td>
-          </tr>
-        </tfoot>
       </table>
     </div>
 
     <div class="ticket-note">
-      <strong>How to read this:</strong> Cheapest start date capped at Aug 10 (your latest arrival). James &amp; Krista: 8 in party, infant (~4 mo.) is free — 7 paid tickets. Military est. uses 20% off; actual MWR rate may differ. Lightning Lane is per-person per-day — applied across all park days. Multi Pass skips most rides; Multi+Single adds skip for the biggest headliners.
+      <strong>How to read this:</strong> "Per-Day Rate" is the price per person per day for that ticket length — more days = lower daily rate, but higher total (you're buying more days). Cheapest start date capped at Aug 10. James &amp; Krista: 8 in party, infant (~4 mo.) is free — 7 paid tickets. Military est. uses 20% off; actual MWR rate may differ. Lightning Lane Multi Pass is ~$30/day and lets you skip most ride queues.
     </div>
   </div>
 
@@ -499,7 +485,7 @@
 
   let activeDays = 3;
   let milOn = false;
-  let llPerDay = 0; // Lightning Lane per-person per-day add-on
+  let llOn = false; // Lightning Lane toggle
 
   function priceColor(val, min, max) {
     const pct = (val - min) / (max - min);
@@ -573,26 +559,36 @@
   }
 
   function renderCostTable() {
-    let grandTotal = 0, grandNoLL = 0;
+    const llPerDay = llOn ? 30 : 0;
+    const llColHead = document.getElementById('llColHead');
+    if (llColHead) llColHead.style.display = llOn ? '' : 'none';
     let html = '';
     for (const g of GROUPS) {
       const days = groupDays[g.name];
       const { day, ppd } = bestStart(g, days);
-      const ticketMil = Math.round(ppd * days * 0.8);
-      const llTotal = llPerDay * days;
-      const perPersonTotal = ticketMil + llTotal;
+      const ppdStd = ppd;
+      const ppdMil = Math.round(ppd * 0.8 * 10) / 10;
+      const ticketStd = Math.round(ppdStd * days);
+      const ticketMil = Math.round(ppdMil * days);
+      const llPerson = llPerDay * days;
+      const perPersonTotal = ticketMil + llPerson;
       const groupTotal = perPersonTotal * g.people;
-      grandTotal += groupTotal;
-      grandNoLL += ticketMil * g.people;
       const color = GROUP_COLORS[g.name];
       const tabs = g.options.length > 1
         ? `<div class="cg-tabs">${g.options.map(d =>
             `<button class="cg-tab${groupDays[g.name]===d?' active':''}" data-group="${g.name}" data-days="${d}">${d}-Day</button>`
           ).join('')}</div>`
         : `<span class="cg-fixed">${days}-Day</span>`;
-      const llCell = llPerDay > 0
-        ? `<span style="color:#7a5a00;font-weight:600">${fmt(llTotal)}</span><div style="font-size:10px;color:#8aaabb">${fmt(llPerDay)}/day × ${days}</div>`
-        : `<span style="color:#b0c0cc;">—</span>`;
+      // Per-day rate cell: std small, mil bold
+      const rateCell = `<div style="font-size:11px;color:#9aaabb">$${Math.round(ppdStd)}/day std</div>
+        <div style="font-weight:700;color:#1a7a48;font-size:14px">$${Math.round(ppdMil)}/day mil</div>`;
+      // Ticket total cell: std small no strikethrough, mil bold
+      const totalCell = `<div style="font-size:11px;color:#9aaabb">${fmt(ticketStd)} std</div>
+        <div style="font-weight:700;color:#1a7a48;font-size:15px">${fmt(ticketMil)} mil</div>`;
+      // LL column
+      const llCell = llOn
+        ? `<span style="color:#7a5a00;font-weight:600">${fmt(llPerson)}</span><div style="font-size:10px;color:#8aaabb">$30/day × ${days}</div>`
+        : '';
       html += `<tr>
         <td>
           <div class="cg-name" style="color:${color}">${g.name}</div>
@@ -601,15 +597,13 @@
         <td style="text-align:center;font-weight:600">${g.people}</td>
         <td>${tabs}</td>
         <td style="white-space:nowrap;font-weight:600">Aug ${day}</td>
-        <td><span class="cost-mil">${fmt(ticketMil)}</span></td>
-        <td>${llCell}</td>
-        <td><span style="font-size:15px;font-weight:700;color:#1a2a4a">${fmt(perPersonTotal)}</span></td>
-        <td><span class="cost-group-mil">${fmt(groupTotal)}</span><div style="font-size:11px;color:#8aaabb">tickets only: ${fmt(ticketMil * g.people)}</div></td>
+        <td>${rateCell}</td>
+        <td>${totalCell}</td>
+        ${llOn ? `<td>${llCell}</td>` : ''}
+        <td><span class="cost-group-mil">${fmt(groupTotal)}</span><div style="font-size:11px;color:#8aaabb">${fmt(ticketMil)}/person</div></td>
       </tr>`;
     }
     document.getElementById('costBody').innerHTML = html;
-    document.getElementById('grandStd').textContent = 'Tickets only: $' + grandNoLL.toLocaleString();
-    document.getElementById('grandMil').textContent = '$' + grandTotal.toLocaleString();
   }
 
   function renderAll() { renderCalendar(); renderCostTable(); }
@@ -636,12 +630,13 @@
     renderCostTable();
   });
 
-  document.getElementById('llTabs').addEventListener('click', e => {
-    const btn = e.target.closest('.cg-tab');
-    if (!btn) return;
-    document.querySelectorAll('#llTabs .cg-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    llPerDay = parseInt(btn.dataset.ll);
+  document.getElementById('llToggle').addEventListener('click', () => {
+    llOn = !llOn;
+    const btn = document.getElementById('llToggle');
+    btn.classList.toggle('active', llOn);
+    btn.textContent = llOn
+      ? '⚡ Lightning Lane ON — $30/day per person (click to remove)'
+      : '⚡ Add Lightning Lane pricing (~$30/day per person)';
     renderCostTable();
   });
 
