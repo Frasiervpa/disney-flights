@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📊 Price History — Disney World Aug 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <style>
+    /* History page overrides */
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: #5aabdf; font-size: 14px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+    .back-link:hover { color: #3a8abf; }
+
+    .h-section { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); padding: 24px; margin-bottom: 20px; }
+    .h-section-title { font-size: 16px; font-weight: 700; color: #1a2a4a; margin-bottom: 6px; }
+    .h-section-sub { font-size: 12px; color: #8aaabb; margin-bottom: 18px; }
+
+    /* Route selector */
+    .route-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; align-items: flex-end; }
+    .rc-field { display: flex; flex-direction: column; gap: 4px; }
+    .rc-field label { font-size: 11px; font-weight: 600; color: #6a8aaa; text-transform: uppercase; letter-spacing: 0.4px; }
+    .rc-field select { padding: 7px 12px; border: 1.5px solid #c0d4e8; border-radius: 8px; font-size: 14px; color: #1a2a4a; background: #f8fafc; outline: none; min-width: 200px; }
+    .rc-field select:focus { border-color: #5aabdf; background: #fff; }
+
+    /* Chart containers */
+    .chart-wrap { position: relative; height: 320px; }
+    .chart-wrap-lg { position: relative; height: 400px; }
+
+    /* Stats table */
+    .stats-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+    .stats-table th { background: #f0f4f8; color: #6a8aaa; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 8px 12px; text-align: left; }
+    .stats-table td { padding: 10px 12px; border-bottom: 1px solid #eef2f6; color: #1a2a4a; }
+    .stats-table tr:last-child td { border-bottom: none; }
+    .stats-table tr:hover td { background: #f5f9ff; }
+    .stat-low { color: #1a7a48; font-weight: 700; }
+    .stat-high { color: #aa2a2a; font-weight: 700; }
+    .stat-cur { font-weight: 700; color: #1a2a4a; }
+    .stat-change-up { color: #aa2a2a; }
+    .stat-change-down { color: #1a7a48; }
+    .stat-change-flat { color: #8aaabb; }
+
+    /* Group comparison chips */
+    .group-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .group-chip { padding: 5px 14px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+    .group-chip:hover { border-color: #5aabdf; }
+    .group-chip.active { color: #fff; border-color: transparent; }
+
+    /* Window selector */
+    .window-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .window-chip { padding: 5px 14px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+    .window-chip:hover { border-color: #5aabdf; }
+    .window-chip.active { background: #1a2a4a; border-color: #1a2a4a; color: #fff; }
+
+    /* No data state */
+    .no-data { text-align: center; color: #8aaabb; padding: 48px 20px; font-size: 14px; }
+
+    /* Legend dot */
+    .leg-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+
+    @media (max-width: 640px) {
+      .route-controls { flex-direction: column; }
+      .rc-field select { min-width: 100%; }
+      .chart-wrap { height: 240px; }
+      .chart-wrap-lg { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <a href="index.html" class="back-link">← Back to Tracker</a>
+
+  <header class="site-header">
+    <div class="header-top">
+      <h1>📊 Price History</h1>
+      <p class="subtitle">Disney World · August 2026 · All tracked routes</p>
+    </div>
+    <div class="header-meta">
+      <span id="lastUpdated" class="last-updated">Loading...</span>
+      <span class="disclaimer">Prices from Google Flights · Updated daily · 1 adult economy</span>
+    </div>
+  </header>
+
+  <!-- ── Section 1: Single Route Trend ─────────────────────────────── -->
+  <div class="h-section">
+    <div class="h-section-title">Route Price Trend</div>
+    <div class="h-section-sub">Track nonstop vs. best deal price over time for a single route</div>
+
+    <div class="route-controls">
+      <div class="rc-field">
+        <label>Group</label>
+        <select id="groupSelect"></select>
+      </div>
+      <div class="rc-field">
+        <label>Airport</label>
+        <select id="originSelect">
+          <option value="SLC">SLC – Salt Lake City</option>
+          <option value="PVU">PVU – Provo</option>
+        </select>
+      </div>
+      <div class="rc-field">
+        <label>Date Window</label>
+        <select id="windowSelect"></select>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="trendChart"></canvas>
+    </div>
+
+    <div id="trendStats" style="margin-top: 18px;"></div>
+  </div>
+
+  <!-- ── Section 2: Group Comparison ───────────────────────────────── -->
+  <div class="h-section">
+    <div class="h-section-title">Group Comparison</div>
+    <div class="h-section-sub">Compare best deal prices across all groups for a specific date window and airport</div>
+
+    <div class="route-controls">
+      <div class="rc-field">
+        <label>Airport</label>
+        <select id="compOrigin">
+          <option value="SLC">SLC – Salt Lake City</option>
+          <option value="PVU">PVU – Provo</option>
+        </select>
+      </div>
+      <div class="rc-field">
+        <label>Date Window</label>
+        <select id="compWindow"></select>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="compChart"></canvas>
+    </div>
+  </div>
+
+  <!-- ── Section 3: All-Routes Summary Table ───────────────────────── -->
+  <div class="h-section">
+    <div class="h-section-title">All Routes — Price Summary</div>
+    <div class="h-section-sub">High / low / current for every tracked route</div>
+
+    <div class="route-controls" style="margin-bottom: 12px;">
+      <div class="rc-field">
+        <label>Filter Group</label>
+        <select id="tableGroup"><option value="all">All Groups</option></select>
+      </div>
+      <div class="rc-field">
+        <label>Airport</label>
+        <select id="tableOrigin">
+          <option value="all">All</option>
+          <option value="SLC">SLC</option>
+          <option value="PVU">PVU</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto;">
+      <table class="stats-table" id="summaryTable">
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>From</th>
+            <th>Dates</th>
+            <th>All-Time Low</th>
+            <th>All-Time High</th>
+            <th>Current</th>
+            <th>Change (last 7d)</th>
+            <th>Data Points</th>
+          </tr>
+        </thead>
+        <tbody id="summaryBody">
+          <tr><td colspan="8" class="no-data">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Prices are estimates from Google Flights for 1 adult, economy, round-trip to Orlando (MCO area). Check airlines before booking.</p>
+  </footer>
+
+</div>
+<script>
+// ── Palette for groups ───────────────────────────────────────────────────
+const GROUP_COLORS = [
+  { border: '#5aabdf', bg: 'rgba(90,171,223,0.15)' },
+  { border: '#2a9a60', bg: 'rgba(42,154,96,0.15)'  },
+  { border: '#e87a2a', bg: 'rgba(232,122,42,0.15)' },
+  { border: '#9a4adf', bg: 'rgba(154,74,223,0.15)' },
+  { border: '#df4a6a', bg: 'rgba(223,74,106,0.15)' },
+];
+const NONSTOP_COLOR  = { border: '#2a9a60', bg: 'rgba(42,154,96,0.12)'  };
+const CHEAPEST_COLOR = { border: '#5aabdf', bg: 'rgba(90,171,223,0.12)' };
+
+let DATA = null;
+let trendChart = null;
+let compChart  = null;
+
+// ── Helpers ──────────────────────────────────────────────────────────────
+function normSnap(s) {
+  if (s.cheapest || s.nonstop) return s;
+  return { date: s.date, nonstop: null, cheapest: s.price != null ? { price: s.price, airline: '?', stops: 1 } : null };
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  const [y, m, day] = d.split('-');
+  return `${+m}/${+day}`;
+}
+
+function fmtWindow(r) {
+  return `${fmtDate(r.depart)} → ${fmtDate(r.return)}`;
+}
+
+function nightCount(r) {
+  return Math.round((new Date(r.return) - new Date(r.depart)) / 86400000);
+}
+
+// Get all unique dates across all snapshots (sorted)
+function allDates(routes) {
+  const s = new Set();
+  routes.forEach(r => (r.snapshots||[]).forEach(sn => s.add(sn.date)));
+  return [...s].sort();
+}
+
+// Get cheapest price for a route on a specific date
+function priceOn(route, date, type = 'cheapest') {
+  const sn = (route.snapshots||[]).find(s => s.date === date);
+  if (!sn) return null;
+  const n = normSnap(sn);
+  if (type === 'nonstop') return n.nonstop ? n.nonstop.price : null;
+  return n.cheapest ? n.cheapest.price : null;
+}
+
+// Latest snapshot price
+function latestPrice(route, type = 'cheapest') {
+  const snaps = (route.snapshots||[]).map(normSnap).filter(s => type === 'nonstop' ? s.nonstop : s.cheapest);
+  if (!snaps.length) return null;
+  const last = snaps[snaps.length - 1];
+  return type === 'nonstop' ? last.nonstop?.price : last.cheapest?.price;
+}
+
+// ── Populate selects ─────────────────────────────────────────────────────
+function populateGroupSelect(el, groups) {
+  el.innerHTML = '';
+  groups.forEach(g => {
+    const o = document.createElement('option');
+    o.value = g; o.textContent = g;
+    el.appendChild(o);
+  });
+}
+
+function populateWindowSelect(el, routes, group, origin) {
+  el.innerHTML = '';
+  const filtered = routes.filter(r => r.group === group && r.origin === origin);
+  filtered.forEach(r => {
+    const o = document.createElement('option');
+    o.value = `${r.depart}__${r.return}`;
+    o.textContent = `${fmtDate(r.depart)} → ${fmtDate(r.return)} (${nightCount(r)} nights)`;
+    el.appendChild(o);
+  });
+}
+
+function populateCompWindow(el, routes, origin) {
+  el.innerHTML = '';
+  const seen = new Set();
+  routes.filter(r => r.origin === origin).forEach(r => {
+    const key = `${r.depart}__${r.return}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      const o = document.createElement('option');
+      o.value = key;
+      o.textContent = `${fmtDate(r.depart)} → ${fmtDate(r.return)} (${nightCount(r)} nights)`;
+      el.appendChild(o);
+    }
+  });
+}
+
+// ── Section 1: Trend Chart ────────────────────────────────────────────────
+function buildTrendChart() {
+  const group  = document.getElementById('groupSelect').value;
+  const origin = document.getElementById('originSelect').value;
+  const win    = document.getElementById('windowSelect').value;
+  if (!win) return;
+  const [depart, ret] = win.split('__');
+
+  const route = DATA.routes.find(r => r.group === group && r.origin === origin && r.depart === depart && r.return === ret);
+  if (!route) return;
+
+  const snaps = (route.snapshots || []).map(normSnap);
+  const dates = [...new Set(snaps.map(s => s.date))].sort();
+
+  // For each date use the last snapshot (in case of dupes)
+  const byDate = {};
+  snaps.forEach(s => { byDate[s.date] = s; });
+  const labels   = dates.map(fmtDate);
+  const nonstop  = dates.map(d => byDate[d]?.nonstop?.price  ?? null);
+  const cheapest = dates.map(d => byDate[d]?.cheapest?.price ?? null);
+
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  if (trendChart) trendChart.destroy();
+  trendChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Nonstop',
+          data: nonstop,
+          borderColor: NONSTOP_COLOR.border,
+          backgroundColor: NONSTOP_COLOR.bg,
+          borderWidth: 2.5,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          tension: 0.3,
+          fill: false,
+          spanGaps: true,
+        },
+        {
+          label: 'Best Deal',
+          data: cheapest,
+          borderColor: CHEAPEST_COLOR.border,
+          backgroundColor: CHEAPEST_COLOR.bg,
+          borderWidth: 2.5,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          tension: 0.3,
+          fill: true,
+          spanGaps: true,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 13 }, boxWidth: 14 } },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.parsed.y != null ? `${ctx.dataset.label}: $${ctx.parsed.y}` : `${ctx.dataset.label}: N/A`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: { callback: v => `$${v}` },
+          grid: { color: '#eef2f6' },
+        },
+        x: { grid: { display: false } },
+      },
+    },
+  });
+
+  // Stats table below chart
+  const validCheap = cheapest.filter(v => v != null);
+  const validNon   = nonstop.filter(v => v != null);
+  const curCheap   = validCheap[validCheap.length - 1] ?? null;
+  const curNon     = validNon[validNon.length - 1] ?? null;
+
+  // 7-day change for cheapest
+  let change7 = null;
+  if (validCheap.length >= 2) {
+    const prev = cheapest.filter(v => v != null).slice(-2)[0];
+    change7 = curCheap - prev;
+  }
+
+  const changeHtml = change7 == null ? '—'
+    : change7 > 0 ? `<span class="stat-change-up">▲ $${change7}</span>`
+    : change7 < 0 ? `<span class="stat-change-down">▼ $${Math.abs(change7)}</span>`
+    : `<span class="stat-change-flat">— No change</span>`;
+
+  document.getElementById('trendStats').innerHTML = `
+    <table class="stats-table">
+      <thead><tr><th>Metric</th><th>Best Deal</th><th>Nonstop</th></tr></thead>
+      <tbody>
+        <tr><td>Current</td><td class="stat-cur">${curCheap != null ? '$'+curCheap : '—'}</td><td class="stat-cur">${curNon != null ? '$'+curNon : '—'}</td></tr>
+        <tr><td>All-Time Low</td><td class="stat-low">${validCheap.length ? '$'+Math.min(...validCheap) : '—'}</td><td class="stat-low">${validNon.length ? '$'+Math.min(...validNon) : '—'}</td></tr>
+        <tr><td>All-Time High</td><td class="stat-high">${validCheap.length ? '$'+Math.max(...validCheap) : '—'}</td><td class="stat-high">${validNon.length ? '$'+Math.max(...validNon) : '—'}</td></tr>
+        <tr><td>Change (last tracked)</td><td>${changeHtml}</td><td>—</td></tr>
+        <tr><td>Data Points</td><td colspan="2">${dates.length} day${dates.length !== 1 ? 's' : ''}</td></tr>
+      </tbody>
+    </table>`;
+}
+
+// ── Section 2: Group Comparison Chart ────────────────────────────────────
+function buildCompChart() {
+  const origin = document.getElementById('compOrigin').value;
+  const win    = document.getElementById('compWindow').value;
+  if (!win) return;
+  const [depart, ret] = win.split('__');
+
+  const routes = DATA.routes.filter(r => r.origin === origin && r.depart === depart && r.return === ret);
+  if (!routes.length) return;
+
+  // Collect all dates across these routes
+  const dateSet = new Set();
+  routes.forEach(r => (r.snapshots||[]).forEach(s => dateSet.add(s.date)));
+  const dates  = [...dateSet].sort();
+  const labels = dates.map(fmtDate);
+
+  const datasets = routes.map((route, i) => {
+    const color = GROUP_COLORS[i % GROUP_COLORS.length];
+    const byDate = {};
+    (route.snapshots||[]).map(normSnap).forEach(s => { byDate[s.date] = s; });
+    const data = dates.map(d => byDate[d]?.cheapest?.price ?? null);
+    return {
+      label: route.group,
+      data,
+      borderColor: color.border,
+      backgroundColor: color.bg,
+      borderWidth: 2.5,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      tension: 0.3,
+      fill: false,
+      spanGaps: true,
+    };
+  });
+
+  const ctx = document.getElementById('compChart').getContext('2d');
+  if (compChart) compChart.destroy();
+  compChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 13 }, boxWidth: 14 } },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.parsed.y != null ? `${ctx.dataset.label}: $${ctx.parsed.y}` : `${ctx.dataset.label}: N/A`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: { callback: v => `$${v}` },
+          grid: { color: '#eef2f6' },
+        },
+        x: { grid: { display: false } },
+      },
+    },
+  });
+}
+
+// ── Section 3: Summary Table ──────────────────────────────────────────────
+function buildSummaryTable() {
+  const filterGroup  = document.getElementById('tableGroup').value;
+  const filterOrigin = document.getElementById('tableOrigin').value;
+
+  const rows = DATA.routes.filter(r =>
+    (filterGroup  === 'all' || r.group  === filterGroup) &&
+    (filterOrigin === 'all' || r.origin === filterOrigin)
+  );
+
+  const tbody = document.getElementById('summaryBody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="no-data">No routes match filters</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = rows.map(route => {
+    const snaps   = (route.snapshots||[]).map(normSnap);
+    const prices  = snaps.map(s => s.cheapest?.price).filter(v => v != null);
+    const byDate  = {};
+    snaps.forEach(s => { byDate[s.date] = s; });
+    const dates   = [...new Set(snaps.map(s => s.date))].sort();
+    const curPrice = dates.length ? (byDate[dates[dates.length-1]]?.cheapest?.price ?? null) : null;
+    const low  = prices.length ? Math.min(...prices) : null;
+    const high = prices.length ? Math.max(...prices) : null;
+
+    // 7d change: compare last two unique-date prices
+    let changeHtml = '—';
+    if (dates.length >= 2) {
+      const prev = byDate[dates[dates.length-2]]?.cheapest?.price;
+      const cur  = curPrice;
+      if (prev != null && cur != null) {
+        const diff = cur - prev;
+        changeHtml = diff > 0
+          ? `<span class="stat-change-up">▲ $${diff}</span>`
+          : diff < 0
+          ? `<span class="stat-change-down">▼ $${Math.abs(diff)}</span>`
+          : `<span class="stat-change-flat">—</span>`;
+      }
+    }
+
+    const originBadge = route.origin === 'SLC'
+      ? '<span class="origin-badge origin-slc">SLC</span>'
+      : '<span class="origin-badge origin-pvu">PVU</span>';
+
+    return `<tr>
+      <td>${route.group}</td>
+      <td>${originBadge}</td>
+      <td style="white-space:nowrap">${route.depart} → ${route.return}</td>
+      <td class="stat-low">${low != null ? '$'+low : '—'}</td>
+      <td class="stat-high">${high != null ? '$'+high : '—'}</td>
+      <td class="stat-cur">${curPrice != null ? '$'+curPrice : '—'}</td>
+      <td>${changeHtml}</td>
+      <td>${dates.length}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────
+async function init() {
+  const res = await fetch('data/flights.json?v=' + Date.now());
+  DATA = await res.json();
+
+  // Last updated
+  const allDates2 = allDates(DATA.routes);
+  const lastDate  = allDates2[allDates2.length - 1];
+  document.getElementById('lastUpdated').textContent = lastDate
+    ? `Last updated: ${lastDate}` : 'No data yet';
+
+  const groups = [...new Set(DATA.routes.map(r => r.group))];
+  const groupSel = document.getElementById('groupSelect');
+  populateGroupSelect(groupSel, groups);
+
+  // Table group filter
+  const tableGroupSel = document.getElementById('tableGroup');
+  groups.forEach(g => {
+    const o = document.createElement('option'); o.value = g; o.textContent = g;
+    tableGroupSel.appendChild(o);
+  });
+
+  // Trend section wiring
+  function refreshWindows() {
+    populateWindowSelect(
+      document.getElementById('windowSelect'),
+      DATA.routes,
+      groupSel.value,
+      document.getElementById('originSelect').value
+    );
+    buildTrendChart();
+  }
+  groupSel.addEventListener('change', refreshWindows);
+  document.getElementById('originSelect').addEventListener('change', refreshWindows);
+  document.getElementById('windowSelect').addEventListener('change', buildTrendChart);
+  refreshWindows();
+
+  // Comp section wiring
+  function refreshCompWindows() {
+    populateCompWindow(
+      document.getElementById('compWindow'),
+      DATA.routes,
+      document.getElementById('compOrigin').value
+    );
+    buildCompChart();
+  }
+  document.getElementById('compOrigin').addEventListener('change', refreshCompWindows);
+  document.getElementById('compWindow').addEventListener('change', buildCompChart);
+  refreshCompWindows();
+
+  // Summary table wiring
+  buildSummaryTable();
+  document.getElementById('tableGroup').addEventListener('change', buildSummaryTable);
+  document.getElementById('tableOrigin').addEventListener('change', buildSummaryTable);
+}
+
+init();
+</script>
+</body>
+</html>
