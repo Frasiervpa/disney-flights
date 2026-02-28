@@ -8,11 +8,9 @@
   <style>
     .back-link { display: inline-flex; align-items: center; gap: 6px; color: #5aabdf; font-size: 14px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
     .back-link:hover { color: #3a8abf; }
-
     .g-section { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); padding: 24px; margin-bottom: 20px; }
     .g-section-title { font-size: 17px; font-weight: 700; color: #1a2a4a; margin-bottom: 4px; }
     .g-section-sub { font-size: 12px; color: #8aaabb; margin-bottom: 20px; }
-
     /* Ticket table */
     .ticket-table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .ticket-table th { background: #1a2a4a; color: #a0c0e0; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 10px 14px; text-align: left; white-space: nowrap; }
@@ -31,7 +29,6 @@
     .value-ok { background: #e8f0ff; color: #2a4a8a; }
     .ticket-note { font-size: 12px; color: #8aaabb; margin-top: 14px; padding-top: 14px; border-top: 1px solid #eef2f6; line-height: 1.7; }
     .ticket-note strong { color: #1a2a4a; }
-
     /* Crowd calendar */
     .crowd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 16px; }
     .crowd-week { border-radius: 10px; padding: 16px; border-left: 5px solid; }
@@ -50,7 +47,6 @@
     .tag-camille { background: #f0e8ff; color: #6a2aaa; }
     .tag-steve { background: #e8f8e0; color: #1a5a28; }
     .tag-james { background: #fff0e0; color: #8a4010; }
-
     /* Window analysis */
     .window-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .window-table th { background: #1a2a4a; color: #a0c0e0; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 10px 12px; text-align: left; white-space: nowrap; }
@@ -65,7 +61,6 @@
     .verdict-great { color: #1a7a48; font-weight: 700; font-size: 12px; }
     .verdict-good { color: #2a6aaa; font-weight: 700; font-size: 12px; }
     .verdict-ok { color: #8a6010; font-weight: 700; font-size: 12px; }
-
     /* Key facts */
     .facts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
     .fact-card { background: #f5f9ff; border-radius: 10px; padding: 14px 16px; border-left: 4px solid #5aabdf; }
@@ -75,17 +70,69 @@
     .fact-label { font-size: 11px; font-weight: 700; color: #6a8aaa; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
     .fact-value { font-size: 15px; font-weight: 700; color: #1a2a4a; line-height: 1.4; }
     .fact-sub { font-size: 11px; color: #8aaabb; margin-top: 3px; }
-
     /* Sources */
     .sources { font-size: 11px; color: #8aaabb; margin-top: 16px; line-height: 1.8; }
     .sources a { color: #5aabdf; text-decoration: none; }
     .sources a:hover { text-decoration: underline; }
-
+    /* Calendar controls */
+    .cal-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .cal-tabs { display: flex; gap: 6px; }
+    .cal-tab { padding: 7px 20px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+    .cal-tab:hover { border-color: #5aabdf; }
+    .cal-tab.active { background: #1a2a4a; border-color: #1a2a4a; color: #fff; }
+    .mil-toggle { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #4a6a8a; cursor: pointer; margin-left: auto; }
+    .mil-toggle input { accent-color: #2a9a60; width: 15px; height: 15px; }
+    .cal-total-line { font-size: 13px; color: #4a6a7a; margin-bottom: 12px; min-height: 18px; }
+    .cal-total-line strong { color: #1a2a4a; }
+    /* Calendar grid */
+    .cal-wrap { overflow-x: auto; }
+    .cal-grid { width: 100%; border-collapse: collapse; min-width: 560px; }
+    .cal-grid th { background: #1a2a4a; color: #a0c0e0; font-weight: 600; font-size: 12px; text-align: center; padding: 8px 4px; }
+    .cal-grid td { border: 1px solid #e0eaf2; vertical-align: top; padding: 0; width: 14.28%; height: 72px; }
+    .cal-cell { padding: 5px 7px; height: 100%; box-sizing: border-box; position: relative; }
+    .cal-date { font-size: 11px; color: #8aaabb; font-weight: 600; }
+    .cal-price { font-size: 16px; font-weight: 700; color: #1a2a4a; margin-top: 6px; }
+    .cal-total { font-size: 10px; color: #6a8aaa; margin-top: 2px; }
+    .cal-empty { background: #f8fafc; }
+    .cal-group-dot { position: absolute; bottom: 4px; right: 5px; display: flex; gap: 2px; }
+    .gdot { width: 6px; height: 6px; border-radius: 50%; }
+    /* Legend */
+    .cal-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; margin-bottom: 20px; }
+    .leg-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #4a6a8a; }
+    .leg-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+    /* Group cost estimator */
+    .cost-divider { border: none; border-top: 1px solid #eef2f6; margin: 20px 0; }
+    .cost-subtitle { font-size: 15px; font-weight: 700; color: #1a2a4a; margin-bottom: 4px; }
+    .cost-sub { font-size: 12px; color: #8aaabb; margin-bottom: 16px; }
+    .mil-banner { background: #edfaf3; border-left: 4px solid #2a9a60; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 13px; color: #1a5a28; }
+    .mil-banner strong { color: #1a4a20; }
+    .cost-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .cost-table th { background: #1a2a4a; color: #a0c0e0; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 9px 12px; text-align: left; white-space: nowrap; }
+    .cost-table td { padding: 11px 12px; border-bottom: 1px solid #eef2f6; vertical-align: middle; }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .cost-table tr:hover td { background: #f5f9ff; }
+    .cost-table tfoot td { background: #1a2a4a; color: #fff; font-weight: 700; font-size: 13px; padding: 12px; }
+    .cost-table tfoot .grand-std { color: #a0c8e0; text-decoration: line-through; font-weight: 400; font-size: 12px; }
+    .cost-table tfoot .grand-mil { color: #6aea9a; font-size: 16px; }
+    .cg-name { font-weight: 700; font-size: 14px; }
+    .cg-note { font-size: 11px; color: #8aaabb; margin-top: 2px; }
+    .cg-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+    .cg-tab { padding: 4px 12px; border-radius: 12px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+    .cg-tab:hover { border-color: #5aabdf; }
+    .cg-tab.active { background: #1a2a4a; border-color: #1a2a4a; color: #fff; }
+    .cg-fixed { font-size: 13px; font-weight: 600; color: #4a6a8a; }
+    .cost-std { font-size: 12px; color: #8aaabb; text-decoration: line-through; }
+    .cost-mil { font-size: 15px; font-weight: 700; color: #1a7a48; }
+    .cost-group-total { font-weight: 700; font-size: 14px; color: #1a2a4a; }
+    .cost-group-mil { font-weight: 700; font-size: 15px; color: #1a7a48; }
     @media (max-width: 640px) {
       .crowd-grid { grid-template-columns: 1fr; }
       .facts-grid { grid-template-columns: 1fr; }
       .ticket-table { font-size: 13px; }
-      .price-total { font-size: 17px; }
+      .cal-price { font-size: 13px; }
+      .cal-grid td { height: 58px; }
+      .mil-toggle { margin-left: 0; }
+      .cost-table { font-size: 12px; }
     }
   </style>
 </head>
@@ -93,17 +140,84 @@
 <div class="page">
 
   <a href="index.html" class="back-link">← Back to Tracker</a>
+  <a href="history.html" style="display:inline-flex;align-items:center;gap:6px;color:#5aabdf;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:16px;margin-left:16px;">📊 Price History →</a>
 
   <header class="site-header">
     <div class="header-top">
       <h1>🎢 Disney Pricing Guide</h1>
-      <p class="subtitle">Disney World · August 2026 · Tickets, Crowds & Windows</p>
+      <p class="subtitle">Disney World · August 2026 · Tickets, Crowds &amp; Windows</p>
     </div>
     <div class="header-meta">
       <span class="last-updated">Ticket prices as of Feb 2026 · Crowd data based on historical patterns</span>
       <span class="disclaimer">Prices pre-tax · Ages 10+ · Single park per day</span>
     </div>
   </header>
+
+  <!-- ── Price Calendar ───────────────────────────────────────────────── -->
+  <div class="g-section">
+    <div class="g-section-title">📅 August 2026 — Per-Day Price Calendar</div>
+    <div class="g-section-sub">Per-person, per-day price by ticket start date. Prices pulled directly from Disney's site (Feb 2026). "+" means price varies by park — Magic Kingdom is always highest.</div>
+
+    <div class="cal-controls">
+      <div class="cal-tabs" id="calTabs">
+        <button class="cal-tab active" data-days="3">3-Day</button>
+        <button class="cal-tab" data-days="4">4-Day</button>
+        <button class="cal-tab" data-days="6">6-Day</button>
+      </div>
+      <label class="mil-toggle">
+        <input type="checkbox" id="milToggle" /> Military price (−20%)
+      </label>
+    </div>
+
+    <div class="cal-total-line" id="calTotalLine"></div>
+    <div class="cal-wrap" id="calWrap"></div>
+
+    <div class="cal-legend">
+      <span class="leg-item"><span class="leg-swatch" style="background:#c8eed8;border:1px solid #2a9a60"></span> Cheapest</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#fff3cd;border:1px solid #e8c84a"></span> Mid-range</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#fde8e8;border:1px solid #cc3a3a"></span> Most expensive</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#e8f0ff;border:2px solid #5aabdf"></span> Group windows</span>
+    </div>
+
+    <!-- ── Group Cost Estimator ─────────────────────────────────────── -->
+    <hr class="cost-divider" />
+    <div class="cost-subtitle">👨‍👩‍👧‍👦 Estimated Group Ticket Cost</div>
+    <div class="cost-sub">Select ticket days per group. Costs calculated from the cheapest valid start date within each group's travel window.</div>
+
+    <div class="mil-banner">
+      🪖 <strong>Military pricing applies to everyone.</strong> James is purchasing all tickets through a military base (MWR/ITT) in Utah — the discount extends to the full party. Estimate uses 20% off; confirm exact rate with James closer to purchase.
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>People</th>
+            <th>Ticket Days</th>
+            <th>Best Start Date</th>
+            <th>Per Person (std)</th>
+            <th>Per Person (mil)</th>
+            <th>Group Total (mil)</th>
+          </tr>
+        </thead>
+        <tbody id="costBody"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6" style="text-align:right;padding-right:16px;">
+              <span class="grand-std" id="grandStd"></span>&nbsp;&nbsp;
+              Grand Total (military est.)
+            </td>
+            <td class="grand-mil" id="grandMil"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="ticket-note">
+      <strong>How to read this:</strong> Each date shows the per-day cost if you start your ticket on that day. Multiply by day count for total per person. James &amp; Krista: 7 in party but infant (~4 mo.) under age 3 = free ticket, 6 paid. Military total uses 20% off estimate — actual MWR discount may differ slightly.
+    </div>
+  </div>
 
   <!-- ── Key Facts ─────────────────────────────────────────────────── -->
   <div class="g-section">
@@ -118,17 +232,17 @@
       <div class="fact-card green">
         <div class="fact-label">August Pricing Tier</div>
         <div class="fact-value">Lowest of the Year</div>
-        <div class="fact-sub">August has some of the cheapest ticket prices Disney offers. Only 2 days in all of 2026 hit the absolute $139 floor — both in August.</div>
+        <div class="fact-sub">August has some of the cheapest ticket prices Disney offers. Only 2 days in all of 2026 hit the absolute floor — both in August.</div>
       </div>
       <div class="fact-card gold">
         <div class="fact-label">Best Value Day Count</div>
         <div class="fact-value">6-Day Ticket</div>
         <div class="fact-sub">Per-day cost drops sharply after 4 days. 6-day is the sweet spot if you can use the days. 4-day is next best.</div>
       </div>
-      <div class="fact-card">
-        <div class="fact-label">Military Discount (James)</div>
-        <div class="fact-value">~20% off</div>
-        <div class="fact-sub">Salute to Armed Forces pricing. Exact discount varies — buy together to potentially extend discount to the group.</div>
+      <div class="fact-card green">
+        <div class="fact-label">Military (MWR) Discount</div>
+        <div class="fact-value">~20% off everyone</div>
+        <div class="fact-sub">James buying all tickets on base — MWR/ITT pricing applies to the whole group. Often better than the standard Salute program.</div>
       </div>
       <div class="fact-card green">
         <div class="fact-label">Least Crowded Window</div>
@@ -137,7 +251,7 @@
       </div>
       <div class="fact-card red">
         <div class="fact-label">Weather Reality</div>
-        <div class="fact-value">Hot & Humid</div>
+        <div class="fact-value">Hot &amp; Humid</div>
         <div class="fact-sub">August in Orlando averages 92°F highs with daily afternoon thunderstorms. Plan indoor rides mid-afternoon.</div>
       </div>
     </div>
@@ -150,79 +264,39 @@
     <div style="overflow-x: auto;">
       <table class="ticket-table">
         <thead>
-          <tr>
-            <th>Days</th>
-            <th>Total (Standard)</th>
-            <th>Per Day</th>
-            <th>James — Military (~20% off)</th>
-            <th>Value</th>
-            <th>Best For</th>
-          </tr>
+          <tr><th>Days</th><th>Total (Standard)</th><th>Per Day</th><th>Military (~20% off)</th><th>Value</th><th>Best For</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              <div class="days-badge">3</div>
-              <div class="days-sub">days</div>
-            </td>
-            <td>
-              <div class="price-total">~$384–$420</div>
-              <div class="price-day">~$128–$140 / day</div>
-            </td>
-            <td>
-              <div style="font-weight:600;color:#1a2a4a;">~$128–$140</div>
-            </td>
-            <td>
-              <div class="military-price">~$307–$336</div>
-              <div class="military-sub">est. 20% off</div>
-            </td>
+            <td><div class="days-badge">3</div><div class="days-sub">days</div></td>
+            <td><div class="price-total">~$384–$462</div><div class="price-day">~$128–$154 / day</div></td>
+            <td><div style="font-weight:600;color:#1a2a4a;">~$128–$154</div></td>
+            <td><div class="military-price">~$307–$370</div><div class="military-sub">est. 20% off</div></td>
             <td><span class="value-badge value-ok">OK</span></td>
-            <td style="font-size:12px;color:#4a6a7a;">Camille &amp; Clint, Steve &amp; Carol (shorter stay)</td>
+            <td style="font-size:12px;color:#4a6a7a;">Camille &amp; Clint, Steve &amp; Carol (option)</td>
           </tr>
           <tr>
-            <td>
-              <div class="days-badge">4</div>
-              <div class="days-sub">days</div>
-            </td>
-            <td>
-              <div class="price-total">~$492–$560</div>
-              <div class="price-day">~$123–$140 / day</div>
-            </td>
-            <td>
-              <div style="font-weight:600;color:#1a2a4a;">~$123–$140</div>
-            </td>
-            <td>
-              <div class="military-price">~$394–$448</div>
-              <div class="military-sub">est. 20% off</div>
-            </td>
+            <td><div class="days-badge">4</div><div class="days-sub">days</div></td>
+            <td><div class="price-total">~$492–$584</div><div class="price-day">~$123–$146 / day</div></td>
+            <td><div style="font-weight:600;color:#1a2a4a;">~$123–$146</div></td>
+            <td><div class="military-price">~$394–$467</div><div class="military-sub">est. 20% off</div></td>
             <td><span class="value-badge value-good">Good</span></td>
-            <td style="font-size:12px;color:#4a6a7a;">Solid value jump over 3-day. Per-day cost drops noticeably.</td>
+            <td style="font-size:12px;color:#4a6a7a;">Mark &amp; Megan, Camille &amp; Clint, Steve &amp; Carol (option)</td>
           </tr>
           <tr>
-            <td>
-              <div class="days-badge">6</div>
-              <div class="days-sub">days</div>
-            </td>
-            <td>
-              <div class="price-total">~$564–$620</div>
-              <div class="price-day">~$94–$103 / day</div>
-            </td>
-            <td>
-              <div style="font-weight:600;color:#1a2a4a;">~$94–$103</div>
-            </td>
-            <td>
-              <div class="military-price">~$451–$496</div>
-              <div class="military-sub">est. 20% off</div>
-            </td>
+            <td><div class="days-badge">6</div><div class="days-sub">days</div></td>
+            <td><div class="price-total">~$564–$678</div><div class="price-day">~$94–$113 / day</div></td>
+            <td><div style="font-weight:600;color:#1a2a4a;">~$94–$113</div></td>
+            <td><div class="military-price">~$451–$542</div><div class="military-sub">est. 20% off</div></td>
             <td><span class="value-badge value-best">★ Best Value</span></td>
-            <td style="font-size:12px;color:#4a6a7a;">Best per-day cost. Only ~$150 more than 4-day for 2 extra full park days.</td>
+            <td style="font-size:12px;color:#4a6a7a;">Mark &amp; Megan, James &amp; Krista — best per-day cost</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="ticket-note">
-      <strong>Real example from Disney's site:</strong> A 4-day ticket starting Aug 3, 2026 at Magic Kingdom = <strong>$558.56 total ($139.64/day)</strong> — source: Disney Food Blog, April 2025.<br>
-      <strong>Military note:</strong> James's Salute to Armed Forces discount (~20%) may extend to his party depending on how tickets are purchased together. Confirm with Disney directly — the exact terms vary year to year.<br>
+      <strong>Real example from Disney's site:</strong> 4-day ticket starting Aug 3, 2026 at Magic Kingdom = <strong>$558.56 total ($139.64/day)</strong> — source: Disney Food Blog, April 2025.<br>
+      <strong>MWR note:</strong> Military base (MWR/ITT) tickets are often better than the Disney Salute program. No per-ticket limit issues. James to confirm exact price at the base closer to trip.<br>
       <strong>Price guarantee:</strong> Disney's next annual price increase is expected ~October 2026, after your trip. Current prices are stable.
     </div>
   </div>
@@ -230,13 +304,12 @@
   <!-- ── Crowd Calendar ─────────────────────────────────────────────── -->
   <div class="g-section">
     <div class="g-section-title">👥 August 2026 Crowd Levels</div>
-    <div class="g-section-sub">Based on historical wait time data and school schedule patterns. Tags show which groups have windows in each week.</div>
+    <div class="g-section-sub">Based on historical wait time data and school schedule patterns.</div>
     <div class="crowd-grid">
-
       <div class="crowd-week crowd-high">
         <div class="crowd-week-title">Aug 1–9 (Sat–Sun)</div>
         <div class="crowd-level">🔴 Moderate–High</div>
-        <div class="crowd-notes">Late summer families, last vacations before school. Weekends busiest. Still manageable vs. spring break or Christmas, but not ideal. Early Aug is noticeably busier than mid-Aug.</div>
+        <div class="crowd-notes">Late summer families, last vacations before school. Weekends busiest. Still manageable vs. spring break or Christmas, but not ideal.</div>
         <div class="crowd-group-tags">
           <span class="crowd-tag tag-mark">Mark &amp; Megan</span>
           <span class="crowd-tag tag-camille">Camille &amp; Clint</span>
@@ -244,11 +317,10 @@
           <span class="crowd-tag tag-james">James &amp; Krista</span>
         </div>
       </div>
-
       <div class="crowd-week crowd-mod">
         <div class="crowd-week-title">Aug 4–10 (Tue–Mon)</div>
         <div class="crowd-level">🟡 Moderate</div>
-        <div class="crowd-notes">Weekdays in this window are meaningfully lighter. Crowds start thinning as some regions' schools resume. Still some summer families. Best days: Tue–Thu. Avoid weekends.</div>
+        <div class="crowd-notes">Crowds start thinning as some regions' schools resume. Weekdays much lighter. Best days: Tue–Thu. Avoid weekends.</div>
         <div class="crowd-group-tags">
           <span class="crowd-tag tag-mark">Mark &amp; Megan</span>
           <span class="crowd-tag tag-camille">Camille &amp; Clint</span>
@@ -256,11 +328,10 @@
           <span class="crowd-tag tag-james">James &amp; Krista</span>
         </div>
       </div>
-
       <div class="crowd-week crowd-low">
         <div class="crowd-week-title">Aug 10–16 (Mon–Sun)</div>
         <div class="crowd-level">🟢 Low–Moderate</div>
-        <div class="crowd-notes">Most US schools back by this point. Crowds drop noticeably. WDW Prep and TouringPlans both call Aug 10+ one of the best windows of the entire year — short waits, relaxed pace.</div>
+        <div class="crowd-notes">Most US schools back by this point. WDW Prep and TouringPlans both call Aug 10+ one of the best windows of the entire year — short waits, relaxed pace.</div>
         <div class="crowd-group-tags">
           <span class="crowd-tag tag-mark">Mark &amp; Megan</span>
           <span class="crowd-tag tag-camille">Camille &amp; Clint</span>
@@ -268,431 +339,95 @@
           <span class="crowd-tag tag-james">James &amp; Krista</span>
         </div>
       </div>
-
       <div class="crowd-week crowd-low">
         <div class="crowd-week-title">Aug 17–31 (Mon–Mon)</div>
         <div class="crowd-level">🟢 Low</div>
-        <div class="crowd-notes">Lowest crowds of the summer — some of the lowest of the entire year. Virtually all schools in session nationwide. Shorter wait times, easier dining reservations, more relaxed overall experience.</div>
+        <div class="crowd-notes">Lowest crowds of the summer — some of the lowest of the entire year. Shorter wait times, easier dining reservations, more relaxed overall experience.</div>
         <div class="crowd-group-tags">
           <span class="crowd-tag tag-mark">Mark &amp; Megan</span>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ── Window Analysis ────────────────────────────────────────────── -->
   <div class="g-section">
-    <div class="g-section-title">📅 Group Window Analysis</div>
-    <div class="g-section-sub">How each group's date windows score on crowds + price. Crowd score based on historical patterns (5 = best/lightest). Price is stable across all August windows.</div>
+    <div class="g-section-title">📊 Group Window Analysis</div>
+    <div class="g-section-sub">How each group's date windows score on crowds (5 = lightest). Price is stable across all August windows.</div>
     <div style="overflow-x: auto;">
       <table class="window-table">
-        <thead>
-          <tr>
-            <th>Group</th>
-            <th>Window</th>
-            <th>Nights</th>
-            <th>Crowd Score</th>
-            <th>Verdict</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Group</th><th>Window</th><th>Nights</th><th>Crowd Score</th><th>Verdict</th><th>Notes</th></tr></thead>
         <tbody>
           <tr>
             <td style="font-weight:600;color:#1a2a4a;">Mark &amp; Megan</td>
-            <td style="white-space:nowrap;font-size:12px;">Jul 29 → Aug 5</td>
-            <td>7</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-half"></div><div class="score-dot score-half"></div>
-                <div class="score-dot score-empty"></div><div class="score-dot score-empty"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">2/5</div>
-            </td>
-            <td class="verdict-ok">OK</td>
-            <td style="font-size:12px;color:#4a6a7a;">Pre-Aug 10 crowds. Decent but busier than later windows.</td>
+            <td style="white-space:nowrap;font-size:12px;">Jul 29 → Aug 5</td><td>7</td>
+            <td><div class="score-bar"><div class="score-dot score-half"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div><div class="score-dot score-empty"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">2/5</div></td>
+            <td class="verdict-ok">OK</td><td style="font-size:12px;color:#4a6a7a;">Pre-Aug 10 crowds. Decent but busier than later windows.</td>
           </tr>
           <tr>
             <td style="font-weight:600;color:#1a2a4a;">Mark &amp; Megan</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 1 → Aug 8</td>
-            <td>7</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-half"></div><div class="score-dot score-half"></div>
-                <div class="score-dot score-half"></div><div class="score-dot score-empty"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">2.5/5</div>
-            </td>
-            <td class="verdict-ok">OK</td>
-            <td style="font-size:12px;color:#4a6a7a;">Slightly lighter than July window. Still summer crowds through Aug 8.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 1 → Aug 8</td><td>7</td>
+            <td><div class="score-bar"><div class="score-dot score-half"></div><div class="score-dot score-half"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">2.5/5</div></td>
+            <td class="verdict-ok">OK</td><td style="font-size:12px;color:#4a6a7a;">Still summer crowds through Aug 8.</td>
           </tr>
           <tr>
             <td style="font-weight:600;color:#1a2a4a;">Mark &amp; Megan</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 5 → Aug 12</td>
-            <td>7</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5/5</div>
-            </td>
-            <td class="verdict-good">Good</td>
-            <td style="font-size:12px;color:#4a6a7a;">Straddles the crowd drop. Second half of stay benefits from lighter traffic.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 5 → Aug 12</td><td>7</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5/5</div></td>
+            <td class="verdict-good">Good</td><td style="font-size:12px;color:#4a6a7a;">Straddles the crowd drop. Second half benefits from lighter traffic.</td>
           </tr>
           <tr>
             <td style="font-weight:600;color:#1a2a4a;">Mark &amp; Megan</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 8 → Aug 15</td>
-            <td>7</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-half"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">4.5/5</div>
-            </td>
-            <td class="verdict-great">Great</td>
-            <td style="font-size:12px;color:#4a6a7a;">Hits the sweet spot. Majority of stay falls in the low-crowd Aug 10+ window.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 8 → Aug 15</td><td>7</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-half"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">4.5/5</div></td>
+            <td class="verdict-great">Great</td><td style="font-size:12px;color:#4a6a7a;">Hits the sweet spot. Majority of stay in low-crowd Aug 10+ window.</td>
           </tr>
           <tr>
             <td style="font-weight:600;color:#1a2a4a;">Mark &amp; Megan</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 12 → Aug 19</td>
-            <td>7</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">5/5</div>
-            </td>
-            <td class="verdict-great">★ Best</td>
-            <td style="font-size:12px;color:#4a6a7a;">Entire stay in the lightest crowd window of the year. Best experience potential.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 12 → Aug 19</td><td>7</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">5/5</div></td>
+            <td class="verdict-great">★ Best</td><td style="font-size:12px;color:#4a6a7a;">Entire stay in the lightest crowd window of the year.</td>
           </tr>
           <tr style="background:#f8fbff;">
             <td style="font-weight:600;color:#6a2aaa;">Camille &amp; Clint</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 4 → Aug 11</td>
-            <td>7</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5/5</div>
-            </td>
-            <td class="verdict-good">Good</td>
-            <td style="font-size:12px;color:#4a6a7a;">Busier first half, lighter second half. Aug 10–11 noticeably quieter.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 4 → Aug 11</td><td>7</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5/5</div></td>
+            <td class="verdict-good">Good</td><td style="font-size:12px;color:#4a6a7a;">Busier first half, lighter second half.</td>
           </tr>
           <tr style="background:#f8fbff;">
             <td style="font-weight:600;color:#6a2aaa;">Camille &amp; Clint</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 4 → Aug 12</td>
-            <td>8</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">4/5</div>
-            </td>
-            <td class="verdict-good">Good</td>
-            <td style="font-size:12px;color:#4a6a7a;">Extra day extends into low-crowd zone. Good overall balance.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 4 → Aug 12</td><td>8</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">4/5</div></td>
+            <td class="verdict-good">Good</td><td style="font-size:12px;color:#4a6a7a;">Extra day extends into low-crowd zone.</td>
           </tr>
           <tr style="background:#f8fbff;">
             <td style="font-weight:600;color:#6a2aaa;">Camille &amp; Clint</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 5 → Aug 12</td>
-            <td>7</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">4/5</div>
-            </td>
-            <td class="verdict-good">Good</td>
-            <td style="font-size:12px;color:#4a6a7a;">Avoids Aug 4 weekend. Slightly better start than Aug 4–12.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 5 → Aug 12</td><td>7</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">4/5</div></td>
+            <td class="verdict-good">Good</td><td style="font-size:12px;color:#4a6a7a;">Avoids Aug 4 weekend. Slightly better than Aug 4–12.</td>
           </tr>
           <tr style="background:#f5fff8;">
             <td style="font-weight:600;color:#1a5a28;">Steve &amp; Carol</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 4–11 / 4–12 / 5–12</td>
-            <td>7–8</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5–4/5</div>
-            </td>
-            <td class="verdict-good">Good</td>
-            <td style="font-size:12px;color:#4a6a7a;">Same windows as Camille &amp; Clint — see above. Aug 5–12 is the best of the three options.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 4–11 / 4–12 / 5–12</td><td>7–8</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5–4/5</div></td>
+            <td class="verdict-good">Good</td><td style="font-size:12px;color:#4a6a7a;">Same windows as Camille &amp; Clint. Aug 5–12 is the best option.</td>
           </tr>
           <tr style="background:#fff8f0;">
             <td style="font-weight:600;color:#8a4010;">James &amp; Krista</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 1 → Aug 11</td>
-            <td>10</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5/5</div>
-            </td>
-            <td class="verdict-good">Good</td>
-            <td style="font-size:12px;color:#4a6a7a;">Long stay spans the transition. Second week significantly quieter than first. 6-day ticket is great value here.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 1 → Aug 11</td><td>10</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-half"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">3.5/5</div></td>
+            <td class="verdict-good">Good</td><td style="font-size:12px;color:#4a6a7a;">Spans the transition. Second week significantly quieter.</td>
           </tr>
           <tr style="background:#fff8f0;">
             <td style="font-weight:600;color:#8a4010;">James &amp; Krista</td>
-            <td style="white-space:nowrap;font-size:12px;">Aug 2 → Aug 13</td>
-            <td>11</td>
-            <td>
-              <div class="score-bar">
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div>
-                <div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div>
-              </div>
-              <div style="font-size:11px;color:#8aaabb;margin-top:2px;">4/5</div>
-            </td>
-            <td class="verdict-good">Good</td>
-            <td style="font-size:12px;color:#4a6a7a;">Best of James's windows. Maximizes time in the low-crowd zone after Aug 10.</td>
+            <td style="white-space:nowrap;font-size:12px;">Aug 2 → Aug 13</td><td>11</td>
+            <td><div class="score-bar"><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-filled"></div><div class="score-dot score-empty"></div></div><div style="font-size:11px;color:#8aaabb;margin-top:2px;">4/5</div></td>
+            <td class="verdict-good">Good</td><td style="font-size:12px;color:#4a6a7a;">Best of James's windows. Maximizes time in low-crowd zone after Aug 10.</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-
-  <!-- ── Price Calendar ───────────────────────────────────────────────── -->
-  <div class="g-section">
-    <div class="g-section-title">📅 August 2026 — Per-Day Price Calendar</div>
-    <div class="g-section-sub">Per-person, per-day price by ticket start date. Prices from Disney's official site (Feb 2026). The "+" means price may vary by park — Magic Kingdom is always highest.</div>
-
-    <!-- Controls -->
-    <div class="cal-controls">
-      <div class="cal-tabs" id="calTabs">
-        <button class="cal-tab active" data-days="3">3-Day</button>
-        <button class="cal-tab" data-days="4">4-Day</button>
-        <button class="cal-tab" data-days="6">6-Day</button>
-      </div>
-      <label class="mil-toggle">
-        <input type="checkbox" id="milToggle" /> Show military price (−20%)
-      </label>
-    </div>
-
-    <!-- Total line -->
-    <div class="cal-total-line" id="calTotalLine"></div>
-
-    <!-- Calendar grid -->
-    <div class="cal-wrap" id="calWrap"></div>
-
-    <!-- Legend -->
-    <div class="cal-legend">
-      <span class="leg-item"><span class="leg-swatch" style="background:#c8eed8;border:1px solid #2a9a60"></span> Cheapest</span>
-      <span class="leg-item"><span class="leg-swatch" style="background:#fff3cd;border:1px solid #e8c84a"></span> Mid-range</span>
-      <span class="leg-item"><span class="leg-swatch" style="background:#fde8e8;border:1px solid #cc3a3a"></span> Most expensive</span>
-      <span class="leg-item"><span class="leg-swatch" style="background:#e8f0ff;border:2px solid #5aabdf"></span> Your group windows</span>
-    </div>
-
-    <div class="ticket-note" style="margin-top:14px;">
-      <strong>How to read this:</strong> Each date shows the per-day cost if you start your ticket on that day. Multiply by your day count for the total ticket cost. Prices sourced directly from Disney's calendar (screenshots Feb 2026). Update when Disney changes pricing.
-    </div>
-  </div>
-
-  <style>
-    /* Calendar controls */
-    .cal-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 14px; }
-    .cal-tabs { display: flex; gap: 6px; }
-    .cal-tab { padding: 7px 20px; border-radius: 20px; border: 1.5px solid #c0d4e8; background: #fff; color: #4a6a8a; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
-    .cal-tab:hover { border-color: #5aabdf; }
-    .cal-tab.active { background: #1a2a4a; border-color: #1a2a4a; color: #fff; }
-    .mil-toggle { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #4a6a8a; cursor: pointer; margin-left: auto; }
-    .mil-toggle input { accent-color: #2a9a60; width: 15px; height: 15px; }
-    .cal-total-line { font-size: 13px; color: #4a6a7a; margin-bottom: 12px; min-height: 18px; }
-    .cal-total-line strong { color: #1a2a4a; }
-
-    /* Calendar grid */
-    .cal-wrap { overflow-x: auto; }
-    .cal-grid { width: 100%; border-collapse: collapse; min-width: 560px; }
-    .cal-grid th { background: #1a2a4a; color: #a0c0e0; font-weight: 600; font-size: 12px; text-align: center; padding: 8px 4px; }
-    .cal-grid td { border: 1px solid #e0eaf2; vertical-align: top; padding: 0; width: 14.28%; height: 72px; }
-    .cal-cell { padding: 5px 7px; height: 100%; box-sizing: border-box; position: relative; }
-    .cal-date { font-size: 11px; color: #8aaabb; font-weight: 600; }
-    .cal-price { font-size: 16px; font-weight: 700; color: #1a2a4a; margin-top: 6px; }
-    .cal-total { font-size: 10px; color: #6a8aaa; margin-top: 2px; }
-    .cal-empty { background: #f8fafc; }
-    .cal-group-dot { position: absolute; bottom: 4px; right: 5px; display: flex; gap: 2px; }
-    .gdot { width: 6px; height: 6px; border-radius: 50%; }
-
-    /* Legend */
-    .cal-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
-    .leg-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #4a6a8a; }
-    .leg-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
-
-    @media (max-width: 640px) {
-      .cal-price { font-size: 13px; }
-      .cal-grid td { height: 58px; }
-      .mil-toggle { margin-left: 0; }
-    }
-  </style>
-
-  <script>
-  (function() {
-    // ── Price data (per-day, source: Disney site Feb 2026) ──────────────
-    const PRICES = {
-      3: { // 3-day ticket — per day price
-        1:154, 2:151, 3:148, 4:149, 5:150, 6:150, 7:149, 8:148,
-        9:146, 10:145, 11:147, 12:148, 13:149, 14:145, 15:141,
-        16:135, 17:130, 18:128, 19:131, 20:129, 21:131, 22:133,
-        23:133, 24:134, 25:138, 26:141, 27:143, 28:141, 29:140,
-        30:137, 31:136
-      },
-      4: { // 4-day ticket — per day price
-        1:146, 2:145, 3:145, 4:144, 5:143, 6:142, 7:142, 8:143,
-        9:142, 10:141, 11:141, 12:138, 13:137, 14:135, 15:131,
-        16:128, 17:127, 18:123, 19:124, 20:125, 21:127, 22:130,
-        23:131, 24:131, 25:134, 26:134, 27:133, 28:133, 29:133,
-        30:133, 31:133
-      },
-      6: { // 6-day ticket — per day price
-        1:113, 2:111, 3:110, 4:109, 5:109, 6:109, 7:110, 8:108,
-        9:107, 10:104, 11:103, 12:102, 13:102, 14:102, 15:98,
-        16:96, 17:94, 18:94, 19:95, 20:96, 21:97, 22:99,
-        23:100, 24:99, 25:100, 26:100, 27:100, 28:103, 29:103,
-        30:101, 31:100
-      }
-    };
-
-    // Group windows: [startDay, endDay] in August (days that are WITHIN the stay)
-    const GROUP_WINDOWS = {
-      'Mark & Megan': [
-        [1,5],[1,8],[1,9],[1,10],[5,12],[8,15],[12,19]
-      ],
-      'Camille & Clint': [[4,11],[4,12],[5,12]],
-      'Steve & Carol':   [[4,11],[4,12],[5,12]],
-      'James & Krista':  [[1,11],[1,12],[2,12],[2,13]]
-    };
-
-    const GROUP_COLORS = {
-      'Mark & Megan':   '#5aabdf',
-      'Camille & Clint':'#9a4adf',
-      'Steve & Carol':  '#2a9a60',
-      'James & Krista': '#e87a2a'
-    };
-
-    let activeDays = 3;
-    let milOn = false;
-
-    function priceColor(val, min, max) {
-      const pct = (val - min) / (max - min); // 0=cheapest, 1=most expensive
-      if (pct <= 0.25)      return { bg: '#c8eed8', border: '#2a9a60' };
-      if (pct <= 0.50)      return { bg: '#e8f8e0', border: '#6aba80' };
-      if (pct <= 0.75)      return { bg: '#fff8dd', border: '#e8c84a' };
-      return                       { bg: '#fde8e8', border: '#cc3a3a' };
-    }
-
-    function groupsForDay(day) {
-      const hits = [];
-      for (const [grp, windows] of Object.entries(GROUP_WINDOWS)) {
-        for (const [s, e] of windows) {
-          if (day >= s && day <= e) { hits.push(grp); break; }
-        }
-      }
-      return hits;
-    }
-
-    function renderCalendar() {
-      const data = PRICES[activeDays];
-      const vals = Object.values(data);
-      const min = Math.min(...vals);
-      const max = Math.max(...vals);
-      const mult = milOn ? 0.8 : 1;
-
-      // Total range line
-      const totalMin = Math.round(min * activeDays * mult);
-      const totalMax = Math.round(max * activeDays * mult);
-      const label = milOn ? ' (military −20%)' : '';
-      document.getElementById('calTotalLine').innerHTML =
-        `<strong>${activeDays}-day total range in August:</strong> $${totalMin}–$${totalMax}${label} &nbsp;·&nbsp; Cheapest start date: Aug ${Object.entries(data).find(([,v])=>v===min)[0]} ($${Math.round(min*activeDays*mult)} total)`;
-
-      // Aug 2026 starts on Saturday (day index 6, Sun=0)
-      const firstDow = 6; // Saturday
-      const days = 31;
-
-      let html = `<table class="cal-grid">
-        <thead><tr>
-          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
-        </tr></thead><tbody>`;
-
-      let col = 0;
-      let row = '<tr>';
-
-      // Empty cells before Aug 1
-      for (let i = 0; i < firstDow; i++) {
-        row += '<td class="cal-empty"></td>';
-        col++;
-      }
-
-      for (let d = 1; d <= days; d++) {
-        const raw = data[d];
-        const price = Math.round(raw * mult);
-        const total = Math.round(raw * activeDays * mult);
-        const col_info = priceColor(raw, min, max);
-        const grps = groupsForDay(d);
-        const isGroupDay = grps.length > 0;
-
-        const dotHtml = grps.map(g =>
-          `<span class="gdot" style="background:${GROUP_COLORS[g]}" title="${g}"></span>`
-        ).join('');
-
-        const cellBg = isGroupDay ? '#e8f0ff' : col_info.bg;
-        const cellBorder = isGroupDay ? '2px solid #5aabdf' : `1px solid ${col_info.border}`;
-
-        row += `<td style="border:${cellBorder}">
-          <div class="cal-cell" style="background:${cellBg}">
-            <div class="cal-date">${d}</div>
-            <div class="cal-price">$${price}+</div>
-            <div class="cal-total">$${total} total</div>
-            ${dotHtml ? `<div class="cal-group-dot">${dotHtml}</div>` : ''}
-          </div>
-        </td>`;
-        col++;
-
-        if (col % 7 === 0) {
-          row += '</tr>';
-          html += row;
-          row = '<tr>';
-          col = 0;
-        }
-      }
-
-      // Remaining empty cells
-      if (col > 0) {
-        while (col % 7 !== 0) {
-          row += '<td class="cal-empty"></td>';
-          col++;
-        }
-        row += '</tr>';
-        html += row;
-      }
-
-      html += '</tbody></table>';
-      document.getElementById('calWrap').innerHTML = html;
-    }
-
-    // Tab clicks
-    document.getElementById('calTabs').addEventListener('click', e => {
-      const btn = e.target.closest('.cal-tab');
-      if (!btn) return;
-      document.querySelectorAll('.cal-tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeDays = parseInt(btn.dataset.days);
-      renderCalendar();
-    });
-
-    // Military toggle
-    document.getElementById('milToggle').addEventListener('change', e => {
-      milOn = e.target.checked;
-      renderCalendar();
-    });
-
-    renderCalendar();
-  })();
-  </script>
 
   <!-- ── Planning Notes ─────────────────────────────────────────────── -->
   <div class="g-section">
@@ -700,14 +435,13 @@
     <div class="g-section-sub">Things to know before you book</div>
     <div style="font-size:13px;color:#2a3a4a;line-height:2;">
       <p>🎟️ <strong>Buy tickets sooner rather than later.</strong> Prices are stable until ~October 2026, but popular Aug dates can sell through. No reason to rush, but don't wait until July.</p>
-      <p>🪖 <strong>Military discount (James):</strong> Salute to Armed Forces tickets are typically available early in the year. Limit is usually 6 tickets per military ID per year. Worth confirming current terms at disney.go.com/military before planning group purchase.</p>
+      <p>🪖 <strong>Military discount (James — MWR):</strong> James is purchasing through the base MWR/ITT office in Utah. These tickets are typically at or better than the Disney Salute program and don't have the same per-ID ticket limits. Confirm exact price and availability at the base.</p>
       <p>⚡ <strong>Lightning Lane (skip-the-line):</strong> Multi Pass adds ~$20–45/day per person. Single Pass for top rides adds more. Budget this separately — it's not included in base tickets.</p>
       <p>🌧️ <strong>Weather strategy:</strong> August afternoons bring near-daily thunderstorms (typically 2–5 PM). Use that window for sit-down lunch, indoor attractions, or hotel rest. Morning and evening are the best park times.</p>
       <p>🏨 <strong>Shades of Green:</strong> Military resort on property. Rates ~$200/night. Fills up fast for August — book as early as possible if that's the plan.</p>
       <p>🦁 <strong>For Megan:</strong> Animal Kingdom's safari is a standout low-intensity experience. Worth anchoring one full day there — it's the most open, breezy park and the least overwhelming.</p>
       <p>🍦 <strong>Carson (age 4–5 by trip):</strong> Magic Kingdom is the priority. Fantasyland, the parade, and character meets are built for his age. He'll remember it.</p>
     </div>
-
     <div class="sources">
       Sources: <a href="https://touringplans.com/blog/every-regular-disney-world-ticket-price-in-2026/" target="_blank">TouringPlans (ticket prices)</a> ·
       <a href="https://wdwprepschool.com/disney-world-crowd-calendar/" target="_blank">WDW Prep School (crowd calendar)</a> ·
@@ -718,9 +452,177 @@
   </div>
 
   <footer class="site-footer">
-    <p>Ticket prices pre-tax, ages 10+. Crowd levels based on historical data — actual conditions may vary. Military discount terms subject to Disney's current Salute to Armed Forces program. Check disney.go.com for official current pricing.</p>
+    <p>Ticket prices pre-tax, ages 10+. Crowd levels based on historical data. Military discount estimate only — confirm MWR rate with James before purchasing. Check disney.go.com for official current pricing.</p>
   </footer>
 
 </div>
+
+<script>
+(function() {
+  const PRICES = {
+    3: {1:154,2:151,3:148,4:149,5:150,6:150,7:149,8:148,9:146,10:145,11:147,12:148,13:149,14:145,15:141,16:135,17:130,18:128,19:131,20:129,21:131,22:133,23:133,24:134,25:138,26:141,27:143,28:141,29:140,30:137,31:136},
+    4: {1:146,2:145,3:145,4:144,5:143,6:142,7:142,8:143,9:142,10:141,11:141,12:138,13:137,14:135,15:131,16:128,17:127,18:123,19:124,20:125,21:127,22:130,23:131,24:131,25:134,26:134,27:133,28:133,29:133,30:133,31:133},
+    6: {1:113,2:111,3:110,4:109,5:109,6:109,7:110,8:108,9:107,10:104,11:103,12:102,13:102,14:102,15:98,16:96,17:94,18:94,19:95,20:96,21:97,22:99,23:100,24:99,25:100,26:100,27:100,28:103,29:103,30:101,31:100}
+  };
+
+  const GROUP_WINDOWS = {
+    'Mark & Megan':   [[1,5],[1,8],[1,9],[1,10],[5,12],[8,15],[12,19]],
+    'Camille & Clint':[[4,11],[4,12],[5,12]],
+    'Steve & Carol':  [[4,11],[4,12],[5,12]],
+    'James & Krista': [[1,11],[1,12],[2,12],[2,13]]
+  };
+
+  const GROUP_COLORS = {
+    'Mark & Megan':'#5aabdf','Camille & Clint':'#9a4adf',
+    'Steve & Carol':'#2a9a60','James & Krista':'#e87a2a'
+  };
+
+  const GROUPS = [
+    { name:'Mark & Megan',   people:4, options:[3,4,6], def:6 },
+    { name:'James & Krista', people:6, options:[6],     def:6, note:'7 in party · infant (~4 mo.) is free' },
+    { name:'Camille & Clint',people:6, options:[3,4],   def:4 },
+    { name:'Steve & Carol',  people:2, options:[3,4],   def:3 },
+  ];
+
+  const groupDays = {};
+  GROUPS.forEach(g => { groupDays[g.name] = g.def; });
+
+  let activeDays = 3;
+  let milOn = false;
+
+  function priceColor(val, min, max) {
+    const pct = (val - min) / (max - min);
+    if (pct <= 0.25) return { bg:'#c8eed8', border:'#2a9a60' };
+    if (pct <= 0.50) return { bg:'#e8f8e0', border:'#6aba80' };
+    if (pct <= 0.75) return { bg:'#fff8dd', border:'#e8c84a' };
+    return                  { bg:'#fde8e8', border:'#cc3a3a' };
+  }
+
+  function groupsForDay(day) {
+    const hits = [];
+    for (const [grp, wins] of Object.entries(GROUP_WINDOWS)) {
+      for (const [s,e] of wins) { if (day>=s && day<=e) { hits.push(grp); break; } }
+    }
+    return hits;
+  }
+
+  function bestStart(group, days) {
+    const data = PRICES[days];
+    let bestDay = null, bestPpd = Infinity;
+    for (const [s, e] of GROUP_WINDOWS[group.name]) {
+      for (let d = s; d <= e - days; d++) {
+        if (data[d] !== undefined && data[d] < bestPpd) { bestPpd = data[d]; bestDay = d; }
+      }
+    }
+    return { day: bestDay, ppd: bestPpd };
+  }
+
+  function fmt(n) { return n != null ? '$' + n.toLocaleString() : '—'; }
+
+  function renderCalendar() {
+    const data = PRICES[activeDays];
+    const vals = Object.values(data);
+    const min = Math.min(...vals), max = Math.max(...vals);
+    const mult = milOn ? 0.8 : 1;
+    const totalMin = Math.round(min * activeDays * mult);
+    const totalMax = Math.round(max * activeDays * mult);
+    const cheapDay = Object.entries(data).find(([,v]) => v === min)[0];
+    const milLabel = milOn ? ' (military −20%)' : '';
+    document.getElementById('calTotalLine').innerHTML =
+      `<strong>${activeDays}-day total range:</strong> ${fmt(totalMin)}–${fmt(totalMax)}${milLabel} &nbsp;·&nbsp; Cheapest start: Aug ${cheapDay} (${fmt(Math.round(min*activeDays*mult))} total)`;
+
+    const firstDow = 6; // Aug 2026 starts Saturday
+    let html = `<table class="cal-grid"><thead><tr>
+      <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+    </tr></thead><tbody>`;
+    let col = 0, row = '<tr>';
+    for (let i = 0; i < firstDow; i++) { row += '<td class="cal-empty"></td>'; col++; }
+    for (let d = 1; d <= 31; d++) {
+      const raw = data[d];
+      const price = Math.round(raw * mult);
+      const total = Math.round(raw * activeDays * mult);
+      const ci = priceColor(raw, min, max);
+      const grps = groupsForDay(d);
+      const isGroup = grps.length > 0;
+      const dots = grps.map(g => `<span class="gdot" style="background:${GROUP_COLORS[g]}" title="${g}"></span>`).join('');
+      const cellBg = isGroup ? '#e8f0ff' : ci.bg;
+      const cellBorder = isGroup ? '2px solid #5aabdf' : `1px solid ${ci.border}`;
+      row += `<td style="border:${cellBorder}"><div class="cal-cell" style="background:${cellBg}">
+        <div class="cal-date">${d}</div>
+        <div class="cal-price">$${price}+</div>
+        <div class="cal-total">${fmt(total)} total</div>
+        ${dots ? `<div class="cal-group-dot">${dots}</div>` : ''}
+      </div></td>`;
+      col++;
+      if (col % 7 === 0) { row += '</tr>'; html += row; row = '<tr>'; col = 0; }
+    }
+    if (col > 0) { while (col%7!==0) { row += '<td class="cal-empty"></td>'; col++; } row += '</tr>'; html += row; }
+    html += '</tbody></table>';
+    document.getElementById('calWrap').innerHTML = html;
+  }
+
+  function renderCostTable() {
+    let grandStd = 0, grandMil = 0;
+    let html = '';
+    for (const g of GROUPS) {
+      const days = groupDays[g.name];
+      const { day, ppd } = bestStart(g, days);
+      const perPersonStd = Math.round(ppd * days);
+      const perPersonMil = Math.round(ppd * days * 0.8);
+      const groupStd = perPersonStd * g.people;
+      const groupMil = perPersonMil * g.people;
+      grandStd += groupStd;
+      grandMil += groupMil;
+      const color = GROUP_COLORS[g.name];
+      const tabs = g.options.length > 1
+        ? `<div class="cg-tabs">${g.options.map(d =>
+            `<button class="cg-tab${groupDays[g.name]===d?' active':''}" data-group="${g.name}" data-days="${d}">${d}-Day</button>`
+          ).join('')}</div>`
+        : `<span class="cg-fixed">${days}-Day</span>`;
+      html += `<tr>
+        <td>
+          <div class="cg-name" style="color:${color}">${g.name}</div>
+          ${g.note ? `<div class="cg-note">${g.note}</div>` : ''}
+        </td>
+        <td style="text-align:center;font-weight:600">${g.people}</td>
+        <td>${tabs}</td>
+        <td style="white-space:nowrap;font-weight:600">Aug ${day}</td>
+        <td><span class="cost-std">${fmt(perPersonStd)}</span></td>
+        <td><span class="cost-mil">${fmt(perPersonMil)}</span></td>
+        <td><span class="cost-group-mil">${fmt(groupMil)}</span><div style="font-size:11px;color:#8aaabb">std: ${fmt(groupStd)}</div></td>
+      </tr>`;
+    }
+    document.getElementById('costBody').innerHTML = html;
+    document.getElementById('grandStd').textContent = 'Standard: $' + grandStd.toLocaleString();
+    document.getElementById('grandMil').textContent = '$' + grandMil.toLocaleString();
+  }
+
+  function renderAll() { renderCalendar(); renderCostTable(); }
+
+  document.getElementById('calTabs').addEventListener('click', e => {
+    const btn = e.target.closest('.cal-tab');
+    if (!btn) return;
+    document.querySelectorAll('.cal-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeDays = parseInt(btn.dataset.days);
+    renderCalendar();
+  });
+
+  document.getElementById('milToggle').addEventListener('change', e => {
+    milOn = e.target.checked;
+    renderAll();
+  });
+
+  document.getElementById('costBody').addEventListener('click', e => {
+    const btn = e.target.closest('.cg-tab');
+    if (!btn) return;
+    const grpName = btn.dataset.group;
+    groupDays[grpName] = parseInt(btn.dataset.days);
+    renderCostTable();
+  });
+
+  renderAll();
+})();
+</script>
 </body>
 </html>
