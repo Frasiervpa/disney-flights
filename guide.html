@@ -164,19 +164,18 @@
         <button class="cal-tab" data-days="4">4-Day</button>
         <button class="cal-tab" data-days="6">6-Day</button>
       </div>
-      <label class="mil-toggle">
-        <input type="checkbox" id="milToggle" /> Military price (−20%)
-      </label>
     </div>
 
     <div class="cal-total-line" id="calTotalLine"></div>
     <div class="cal-wrap" id="calWrap"></div>
 
     <div class="cal-legend">
-      <span class="leg-item"><span class="leg-swatch" style="background:#c8eed8;border:1px solid #2a9a60"></span> Cheapest</span>
-      <span class="leg-item"><span class="leg-swatch" style="background:#fff3cd;border:1px solid #e8c84a"></span> Mid-range</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#c8eed8;border:1px solid #2a9a60"></span> Cheapest price</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#fff3cd;border:1px solid #e8c84a"></span> Mid-range price</span>
       <span class="leg-item"><span class="leg-swatch" style="background:#fde8e8;border:1px solid #cc3a3a"></span> Most expensive</span>
       <span class="leg-item"><span class="leg-swatch" style="background:#e8f0ff;border:2px solid #5aabdf"></span> Group windows</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#2a9a60;border-radius:2px"></span> Low crowds</span>
+      <span class="leg-item"><span class="leg-swatch" style="background:#e8a838;border-radius:2px"></span> Moderate–high crowds</span>
     </div>
 
     <!-- ── Group Cost Estimator ─────────────────────────────────────── -->
@@ -188,8 +187,9 @@
       🪖 <strong>Military pricing applies to everyone.</strong> James is purchasing all tickets through a military base (MWR/ITT) in Utah — the discount extends to the full party. Estimate uses 20% off; confirm exact rate with James closer to purchase.
     </div>
 
-    <div style="margin-bottom:14px;">
-      <button id="llToggle" class="cg-tab" data-on="false" style="font-size:13px;padding:8px 18px;">⚡ Add Lightning Lane pricing (~$30/day per person)</button>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+      <button id="milToggle" class="cg-tab" style="font-size:13px;padding:8px 18px;">🪖 Add Military Discount (−20%)</button>
+      <button id="llToggle" class="cg-tab" style="font-size:13px;padding:8px 18px;">⚡ Add Lightning Lane pricing (~$30/day per person)</button>
     </div>
 
     <div style="overflow-x:auto;">
@@ -485,7 +485,14 @@
 
   let activeDays = 3;
   let milOn = false;
-  let llOn = false; // Lightning Lane toggle
+  let llOn = false;
+
+  function crowdBar(day) {
+    // Returns color and label for crowd level bar at top of cell
+    if (day <= 9)  return { color: '#e8a838', label: 'Mod–High crowds' };
+    if (day <= 16) return { color: '#6aba80', label: 'Low–Mod crowds' };
+    return               { color: '#2a9a60', label: 'Low crowds' };
+  }
 
   function priceColor(val, min, max) {
     const pct = (val - min) / (max - min);
@@ -544,7 +551,9 @@
       const dots = grps.map(g => `<span class="gdot" style="background:${GROUP_COLORS[g]}" title="${g}"></span>`).join('');
       const cellBg = isGroup ? '#e8f0ff' : ci.bg;
       const cellBorder = isGroup ? '2px solid #5aabdf' : `1px solid ${ci.border}`;
-      row += `<td style="border:${cellBorder}"><div class="cal-cell" style="background:${cellBg}">
+      const crowd = crowdBar(d);
+      row += `<td style="border:${cellBorder}"><div class="cal-cell" style="background:${cellBg};padding-top:0">
+        <div style="height:4px;background:${crowd.color};border-radius:2px 2px 0 0;margin-bottom:4px;" title="${crowd.label}"></div>
         <div class="cal-date">${d}</div>
         <div class="cal-price">$${price}+</div>
         <div class="cal-total">${fmt(total)} total</div>
@@ -571,7 +580,8 @@
       const ticketStd = Math.round(ppdStd * days);
       const ticketMil = Math.round(ppdMil * days);
       const llPerson = llPerDay * days;
-      const perPersonTotal = ticketMil + llPerson;
+      const basePrice = milOn ? ticketMil : ticketStd;
+      const perPersonTotal = basePrice + llPerson;
       const groupTotal = perPersonTotal * g.people;
       const color = GROUP_COLORS[g.name];
       const tabs = g.options.length > 1
@@ -579,12 +589,16 @@
             `<button class="cg-tab${groupDays[g.name]===d?' active':''}" data-group="${g.name}" data-days="${d}">${d}-Day</button>`
           ).join('')}</div>`
         : `<span class="cg-fixed">${days}-Day</span>`;
-      // Per-day rate cell: std small, mil bold
-      const rateCell = `<div style="font-size:11px;color:#9aaabb">$${Math.round(ppdStd)}/day std</div>
-        <div style="font-weight:700;color:#1a7a48;font-size:14px">$${Math.round(ppdMil)}/day mil</div>`;
-      // Ticket total cell: std small no strikethrough, mil bold
-      const totalCell = `<div style="font-size:11px;color:#9aaabb">${fmt(ticketStd)} std</div>
-        <div style="font-weight:700;color:#1a7a48;font-size:15px">${fmt(ticketMil)} mil</div>`;
+      // Per-day rate cell
+      const rateCell = milOn
+        ? `<div style="font-size:11px;color:#9aaabb">$${Math.round(ppdStd)}/day std</div>
+           <div style="font-weight:700;color:#1a7a48;font-size:14px">$${Math.round(ppdMil)}/day mil</div>`
+        : `<div style="font-weight:700;color:#1a2a4a;font-size:14px">$${Math.round(ppdStd)}/day</div>`;
+      // Ticket total cell
+      const totalCell = milOn
+        ? `<div style="font-size:11px;color:#9aaabb">${fmt(ticketStd)} std</div>
+           <div style="font-weight:700;color:#1a7a48;font-size:15px">${fmt(ticketMil)} mil</div>`
+        : `<div style="font-weight:700;color:#1a2a4a;font-size:15px">${fmt(ticketStd)}</div>`;
       // LL column
       const llCell = llOn
         ? `<span style="color:#7a5a00;font-weight:600">${fmt(llPerson)}</span><div style="font-size:10px;color:#8aaabb">$30/day × ${days}</div>`
@@ -600,7 +614,7 @@
         <td>${rateCell}</td>
         <td>${totalCell}</td>
         ${llOn ? `<td>${llCell}</td>` : ''}
-        <td><span class="cost-group-mil">${fmt(groupTotal)}</span><div style="font-size:11px;color:#8aaabb">${fmt(ticketMil)}/person</div></td>
+        <td><span class="cost-group-mil">${fmt(groupTotal)}</span><div style="font-size:11px;color:#8aaabb">${fmt(basePrice)}/person</div></td>
       </tr>`;
     }
     document.getElementById('costBody').innerHTML = html;
@@ -617,8 +631,13 @@
     renderCalendar();
   });
 
-  document.getElementById('milToggle').addEventListener('change', e => {
-    milOn = e.target.checked;
+  document.getElementById('milToggle').addEventListener('click', () => {
+    milOn = !milOn;
+    const btn = document.getElementById('milToggle');
+    btn.classList.toggle('active', milOn);
+    btn.textContent = milOn
+      ? '🪖 Military Discount ON (−20%) — click to remove'
+      : '🪖 Add Military Discount (−20%)';
     renderAll();
   });
 
