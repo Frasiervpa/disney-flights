@@ -9,7 +9,10 @@
       "origin": "SLC",
       "depart": "2026-08-08",
       "return": "2026-08-16",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 8,
+      "type": "Extended",
+      "label": "SLC 08-08 \u2192 08-16 [Mark & Megan]"
     },
     {
       "id": "slc-mm-aug09-aug16",
@@ -17,7 +20,10 @@
       "origin": "SLC",
       "depart": "2026-08-09",
       "return": "2026-08-16",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "SLC 08-09 \u2192 08-16 [Mark & Megan]"
     },
     {
       "id": "pvu-mm-aug08-aug16",
@@ -25,7 +31,10 @@
       "origin": "PVU",
       "depart": "2026-08-08",
       "return": "2026-08-16",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 8,
+      "type": "Extended",
+      "label": "PVU 08-08 \u2192 08-16 [Mark & Megan]"
     },
     {
       "id": "pvu-mm-aug09-aug16",
@@ -33,7 +42,10 @@
       "origin": "PVU",
       "depart": "2026-08-09",
       "return": "2026-08-16",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "PVU 08-09 \u2192 08-16 [Mark & Megan]"
     },
     {
       "id": "slc-cc-aug11-aug18",
@@ -41,7 +53,10 @@
       "origin": "SLC",
       "depart": "2026-08-11",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "SLC 08-11 \u2192 08-18 [Camille and Clint]"
     },
     {
       "id": "slc-cc-aug11-aug19",
@@ -49,7 +64,10 @@
       "origin": "SLC",
       "depart": "2026-08-11",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 8,
+      "type": "Extended",
+      "label": "SLC 08-11 \u2192 08-19 [Camille and Clint]"
     },
     {
       "id": "slc-cc-aug12-aug18",
@@ -57,7 +75,10 @@
       "origin": "SLC",
       "depart": "2026-08-12",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 6,
+      "type": "1 Week",
+      "label": "SLC 08-12 \u2192 08-18 [Camille and Clint]"
     },
     {
       "id": "slc-cc-aug12-aug19",
@@ -65,7 +86,10 @@
       "origin": "SLC",
       "depart": "2026-08-12",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "SLC 08-12 \u2192 08-19 [Camille and Clint]"
     },
     {
       "id": "pvu-cc-aug11-aug18",
@@ -73,7 +97,10 @@
       "origin": "PVU",
       "depart": "2026-08-11",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "PVU 08-11 \u2192 08-18 [Camille and Clint]"
     },
     {
       "id": "pvu-cc-aug11-aug19",
@@ -81,7 +108,10 @@
       "origin": "PVU",
       "depart": "2026-08-11",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 8,
+      "type": "Extended",
+      "label": "PVU 08-11 \u2192 08-19 [Camille and Clint]"
     },
     {
       "id": "pvu-cc-aug12-aug18",
@@ -89,7 +119,10 @@
       "origin": "PVU",
       "depart": "2026-08-12",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 6,
+      "type": "1 Week",
+      "label": "PVU 08-12 \u2192 08-18 [Camille and Clint]"
     },
     {
       "id": "pvu-cc-aug12-aug19",
@@ -97,7 +130,10 @@
       "origin": "PVU",
       "depart": "2026-08-12",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "PVU 08-12 \u2192 08-19 [Camille and Clint]"
     },
     {
       "id": "slc-sc-aug11-aug18",
@@ -105,7 +141,10 @@
       "origin": "SLC",
       "depart": "2026-08-11",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "SLC 08-11 \u2192 08-18 [Steve and Carol]"
     },
     {
       "id": "slc-sc-aug11-aug19",
@@ -113,7 +152,10 @@
       "origin": "SLC",
       "depart": "2026-08-11",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 8,
+      "type": "Extended",
+      "label": "SLC 08-11 \u2192 08-19 [Steve and Carol]"
     },
     {
       "id": "slc-sc-aug12-aug18",
@@ -121,7 +163,10 @@
       "origin": "SLC",
       "depart": "2026-08-12",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 6,
+      "type": "1 Week",
+      "label": "SLC 08-12 \u2192 08-18 [Steve and Carol]"
     },
     {
       "id": "slc-sc-aug12-aug19",
@@ -129,7 +174,10 @@
       "origin": "SLC",
       "depart": "2026-08-12",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "SLC 08-12 \u2192 08-19 [Steve and Carol]"
     },
     {
       "id": "pvu-sc-aug11-aug18",
@@ -137,7 +185,10 @@
       "origin": "PVU",
       "depart": "2026-08-11",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "PVU 08-11 \u2192 08-18 [Steve and Carol]"
     },
     {
       "id": "pvu-sc-aug11-aug19",
@@ -145,7 +196,10 @@
       "origin": "PVU",
       "depart": "2026-08-11",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 8,
+      "type": "Extended",
+      "label": "PVU 08-11 \u2192 08-19 [Steve and Carol]"
     },
     {
       "id": "pvu-sc-aug12-aug18",
@@ -153,7 +207,10 @@
       "origin": "PVU",
       "depart": "2026-08-12",
       "return": "2026-08-18",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 6,
+      "type": "1 Week",
+      "label": "PVU 08-12 \u2192 08-18 [Steve and Carol]"
     },
     {
       "id": "pvu-sc-aug12-aug19",
@@ -161,7 +218,10 @@
       "origin": "PVU",
       "depart": "2026-08-12",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 7,
+      "type": "1 Week",
+      "label": "PVU 08-12 \u2192 08-19 [Steve and Carol]"
     },
     {
       "id": "slc-jk-aug08-aug19",
@@ -169,7 +229,10 @@
       "origin": "SLC",
       "depart": "2026-08-08",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 11,
+      "type": "Extended+",
+      "label": "SLC 08-08 \u2192 08-19 [James and Krista]"
     },
     {
       "id": "pvu-jk-aug08-aug19",
@@ -177,7 +240,10 @@
       "origin": "PVU",
       "depart": "2026-08-08",
       "return": "2026-08-19",
-      "snapshots": []
+      "snapshots": [],
+      "nights": 11,
+      "type": "Extended+",
+      "label": "PVU 08-08 \u2192 08-19 [James and Krista]"
     },
     {
       "id": "jul29-aug5",
