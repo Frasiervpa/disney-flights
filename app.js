@@ -218,7 +218,7 @@ function renderRow(r) {
     <td><span class="origin-badge origin-${r.origin.toLowerCase()}">${r.origin}</span></td>
     <td><div class="date-label">${r.label}</div></td>
     <td>${r.nights}</td>
-    <td><span class="type-badge ${typeClass(r.type)}">${r.type}</span></td>
+    
     <td class="price-col">${nsCell}</td>
     <td class="price-col">${bdCell}</td>
     <td class="price-col">${l7Cell}</td>
@@ -318,7 +318,7 @@ function renderCard(r) {
         ${gBadge}
         ${pick ? `<span class="best-badge rank-${pick.rank}">★ #${pick.rank}</span>` : ''}
         <span class="origin-badge origin-${r.origin.toLowerCase()}">${r.origin}</span>
-        <span class="type-badge ${typeClass(r.type)}">${r.type}</span>
+
       </div>
       <div style="text-align:right">
         <div class="fc-dates">${r.label}</div>
@@ -417,7 +417,7 @@ async function load() {
     renderSummary();
   } catch(e) {
     document.getElementById('flightBody').innerHTML =
-      `<tr><td colspan="10" class="loading">Could not load price data. Try refreshing.</td></tr>`;
+      `<tr><td colspan="9" class="loading">Could not load price data. Try refreshing.</td></tr>`;
   }
 }
 
