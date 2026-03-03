@@ -409,7 +409,7 @@ async function load() {
       ? 'Last updated: ' + new Date(lu).toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' })
       : 'Not yet updated';
 
-    allRoutes = data.routes || [];
+    allRoutes = (data.routes || []).filter(r => !r.archived);
     buildGroupButtons(allRoutes);
     buildAirlineButtons();
     document.getElementById('flightBody').innerHTML = sortedRoutes().map(renderRow).join('');
