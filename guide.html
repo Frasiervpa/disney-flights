@@ -514,7 +514,7 @@
     const data = PRICES[days];
     let bestDay = null, bestPpd = Infinity;
     for (const [s, e] of GROUP_WINDOWS[group.name]) {
-      for (let d = s; d <= Math.min(e - days, 10); d++) {
+      for (let d = s; d <= e - days; d++) {
         if (data[d] !== undefined && data[d] < bestPpd) { bestPpd = data[d]; bestDay = d; }
       }
     }
