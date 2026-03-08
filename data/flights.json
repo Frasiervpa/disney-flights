@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-06T13:08:17.748100+00:00",
+  "lastUpdated": "2026-03-08T12:11:16.185605+00:00",
   "origin": "SLC",
   "destination": "MCO",
   "routes": [
@@ -48,6 +48,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -117,6 +129,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 7,
@@ -177,6 +201,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 398,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 8,
@@ -228,6 +264,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -297,6 +345,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 7,
@@ -357,6 +417,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 8,
@@ -408,6 +480,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -477,6 +561,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 7,
@@ -528,6 +624,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 318,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 318,
             "airline": "Breeze"
@@ -597,6 +705,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 318,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 8,
@@ -648,6 +768,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 278,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 278,
             "airline": "Breeze"
@@ -717,6 +849,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 278,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 7,
@@ -768,6 +912,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -837,6 +993,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 8,
@@ -888,6 +1056,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -957,6 +1137,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 7,
@@ -1008,6 +1200,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 318,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 318,
             "airline": "Breeze"
@@ -1077,6 +1281,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 318,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 8,
@@ -1128,6 +1344,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 278,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 278,
             "airline": "Breeze"
@@ -1197,6 +1425,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 278,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 7,
@@ -1257,6 +1497,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "nights": 11,
@@ -1314,6 +1566,18 @@
           },
           "cheapest": {
             "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 288,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
             "airline": "Frontier",
             "stops": 1
           }
@@ -1465,6 +1729,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -1631,6 +1907,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "origin": "SLC",
@@ -1773,6 +2061,18 @@
           },
           "cheapest": {
             "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 290,
             "airline": "Frontier",
             "stops": 1
           }
@@ -1933,6 +2233,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "origin": "SLC",
@@ -2090,6 +2402,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "origin": "SLC",
@@ -2226,6 +2550,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -2392,6 +2728,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "origin": "SLC",
@@ -2528,6 +2876,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -2694,6 +3054,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "origin": "SLC",
@@ -2833,6 +3205,18 @@
           "date": "2026-03-06",
           "nonstop": {
             "price": 288,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 358,
             "airline": "Breeze"
           },
           "cheapest": {
@@ -2997,6 +3381,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 298,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "group": "Mark & Megan",
@@ -3142,6 +3538,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 348,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 290,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "group": "Mark & Megan",
@@ -3284,6 +3692,18 @@
           },
           "cheapest": {
             "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 318,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
             "airline": "Frontier",
             "stops": 1
           }
@@ -3435,6 +3855,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 248,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 248,
+            "airline": "Breeze",
+            "stops": 0
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 248,
             "airline": "Breeze"
@@ -3601,6 +4033,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 298,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "group": "Mark & Megan",
@@ -3737,6 +4181,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 268,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 268,
+            "airline": "Breeze",
+            "stops": 0
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 268,
             "airline": "Breeze"
@@ -3903,6 +4359,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 288,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "group": "Mark & Megan",
@@ -4045,6 +4513,18 @@
           },
           "cheapest": {
             "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 278,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
             "airline": "Frontier",
             "stops": 1
           }
@@ -4194,6 +4674,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -4318,6 +4810,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -4472,6 +4976,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -4596,6 +5112,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 328,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 328,
             "airline": "Breeze"
@@ -4750,6 +5278,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 298,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -4895,6 +5435,18 @@
             "airline": "Breeze",
             "stops": 0
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 248,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 248,
+            "airline": "Breeze",
+            "stops": 0
+          }
         }
       ],
       "archived": true
@@ -5016,6 +5568,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 290,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -5134,6 +5698,18 @@
           },
           "cheapest": {
             "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
             "airline": "Frontier",
             "stops": 1
           }
@@ -5270,6 +5846,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 290,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -5388,6 +5976,18 @@
           },
           "cheapest": {
             "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 398,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
             "airline": "Frontier",
             "stops": 1
           }
@@ -5524,6 +6124,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -5636,6 +6248,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -5758,6 +6382,18 @@
         {
           "date": "2026-03-06",
           "nonstop": null,
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
           "cheapest": {
             "price": 250,
             "airline": "Frontier",
@@ -5896,6 +6532,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 328,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -6008,6 +6656,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 298,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 298,
             "airline": "Breeze"
@@ -6138,6 +6798,18 @@
             "airline": "Breeze",
             "stops": 0
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 248,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 248,
+            "airline": "Breeze",
+            "stops": 0
+          }
         }
       ],
       "archived": true
@@ -6244,6 +6916,18 @@
           },
           "cheapest": {
             "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
             "airline": "Frontier",
             "stops": 1
           }
@@ -6368,6 +7052,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -6468,6 +7164,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 290,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
@@ -6598,6 +7306,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 290,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -6704,6 +7424,18 @@
           },
           "cheapest": {
             "price": 250,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 318,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
             "airline": "Frontier",
             "stops": 1
           }
@@ -6828,6 +7560,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 288,
+            "airline": "Breeze"
+          },
+          "cheapest": {
+            "price": 270,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -6949,6 +7693,18 @@
             "airline": "Frontier",
             "stops": 1
           }
+        },
+        {
+          "date": "2026-03-08",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 290,
+            "airline": "Frontier",
+            "stops": 1
+          }
         }
       ],
       "archived": true
@@ -7049,6 +7805,18 @@
         },
         {
           "date": "2026-03-06",
+          "nonstop": {
+            "price": 419,
+            "airline": "Delta"
+          },
+          "cheapest": {
+            "price": 290,
+            "airline": "Frontier",
+            "stops": 1
+          }
+        },
+        {
+          "date": "2026-03-08",
           "nonstop": {
             "price": 419,
             "airline": "Delta"
